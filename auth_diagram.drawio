@@ -1,0 +1,63 @@
+<mxfile host="65bd71144e">
+    <diagram id="hDi7dhpcKj9UGjE-Qj2d" name="Page-1">
+        <mxGraphModel dx="1503" dy="888" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-1" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontColor=none;noLabel=1;" parent="1" vertex="1">
+                    <mxGeometry x="399" y="190" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="JCgDjAugQ-T8b9kN-kiQ-9" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="413.5799999999999" y="260" as="sourcePoint"/>
+                        <mxPoint x="414" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=none;startArrow=none;startFill=0;endArrow=classic;endFill=1;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="200" y="520" as="targetPoint"/>
+                        <mxPoint x="478" y="365" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="478" y="365"/>
+                            <mxPoint x="550" y="365"/>
+                            <mxPoint x="550" y="580"/>
+                            <mxPoint x="200" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-9" value="Cube Page" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="354" y="340" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-10" value="Logs in to" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="429" y="280" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-14" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="JCgDjAugQ-T8b9kN-kiQ-17" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="350" y="370" as="sourcePoint"/>
+                        <mxPoint x="200" y="440" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="200" y="370"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-15" value="Generates token from" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="330" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontColor=none;startArrow=none;startFill=0;endArrow=classic;endFill=1;" parent="1" source="JCgDjAugQ-T8b9kN-kiQ-17" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="410" y="410" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-17" value="CubeQuery" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="455" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-21" value="Token sent to" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="279" y="455" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="JCgDjAugQ-T8b9kN-kiQ-24" value="Refresh token every 15 minutes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="555" width="190" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

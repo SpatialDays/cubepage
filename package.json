@@ -1,0 +1,56 @@
+{
+  "name": "cube-page",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.0",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/material": "^5.1.0",
+    "@react-leaflet/core": "^1.1.1",
+    "@reduxjs/toolkit": "^1.6.2",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
+    "leaflet": "^1.6.0",
+    "leaflet-draw": "^1.0.4",
+    "node-sass": "^4.14.1",
+    "react-app-rewire-babel-loader": "^0.1.1",
+    "react-app-rewired": "^2.1.8",
+    "react-cool-form": "^0.4.1",
+    "react-datepicker": "^4.3.0",
+    "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
+    "react-leaflet": "^3",
+    "react-leaflet-draw": "^0.19.0",
+    "react-multi-select-component": "^4.1.13",
+    "react-onclickoutside": "^6.12.0",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-select": "^5.2.0",
+    "react-tooltip": "^4.2.21",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "react": "^16.14.0"
+  }
+}

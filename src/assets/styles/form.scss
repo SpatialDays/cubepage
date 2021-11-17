@@ -1,0 +1,48 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    height: 34px;
+    width: 100%;
+    border-radius: 3px;
+    border-width:1px;
+    border-color: #c7bfbf;
+    border-style: solid;
+
+    font-size:1em;
+    padding-left:0.6em;
+  }
+
+  .dropdown-content {
+    height: auto;
+    width: auto;
+
+    input {
+      height: 1em;
+      width: 10%;
+    }
+  }
+
+  input[type="submit"] {
+    height: 2.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  p {
+    margin: 0;
+    color: #c40000;
+  }
+}
+
+.form-row {
+  height: 5em;
+  width: 50%;
+  min-width: 400px;
+}
+
+.form-row:first-child {
+  margin-top: 2em;
+}
