@@ -32,7 +32,6 @@ const DrawMap = ({ setAOI, showMap }) => {
   }
 
   const handleMount = () => {
-    console.log('Mounted ::')
     const drawTool = document.getElementsByClassName('leaflet-draw-draw-rectangle')
     if (drawTool.length === 1) {
       drawTool[0].click()

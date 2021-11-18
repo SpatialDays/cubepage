@@ -26,7 +26,6 @@ const TaskForm = ({ task, settings }) => {
     useForm({
       defaultValues,
       validate: (values) => {
-        console.log("validating", values);
         return Validate(values, settings, task.name);
       },
       onSubmit: (values) => {

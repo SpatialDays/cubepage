@@ -18,7 +18,6 @@ export const fetchTasks = (setTasks, setSettings) => {
     })
     .catch(function (error) {
       // Expired or Invalid Token
-      console.log('FAILED', error.response);
       if ((error.response && error.response.status > 400) || !error.response) {
         window.location.href = "/login";
       }
@@ -48,7 +47,6 @@ export const submitTasks = async (task, data, setLoading, setErrorMessage) => {
         window.location.href = "/login";
       }
 
-      console.log(error.response)
       let errorMsg = error.response.data.map((e) => {
         return e.Error;
       });
