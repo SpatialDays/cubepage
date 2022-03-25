@@ -1,34 +1,53 @@
 # Cube Page
-This project was created to interact with the `CubeQueryAPI`.
+This project was created to interact with cube products as part of the CommonSensing project.
+
+Token authorization is required to use the API and is provided by the CSOpenPortal https://github.com/SatelliteApplicationsCatapult/csopenportal
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+`npm run start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`npm run build`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm run build`
+# Examples
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## `View all products`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Select any available tasks to launch cube products.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<div style="width=100%; text-align:center;">
+  <img src="./examples/tasks.png" style="width:70%;">
+</div>
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## `Interact with a product with live input validation`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Validates input based on the dynamic settings found in _src/components/form/Validate.js_
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<div style="width=100%; text-align:center;">
+  <img src="./examples/errors.png" style="width:70%;">
+</div>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
+
+## `Use a map to create WKT aoi`
+
+Draw an AOI onto the map and get live validation on the AOI specified
+
+<div style="width=100%; text-align:center;">
+  <img src="./examples/leaflet.png" style="width:70%;">
+</div>
+
+---
+
+## `View your queue and download results`
+
+The authorised user gets a list of all the tasks in the queue and can download the results of any completed tasks.
+
+<div style="width=100%; text-align:center;">
+  <img src="./examples/queue.png" style="width:70%;">
+</div>

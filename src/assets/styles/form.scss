@@ -7,12 +7,12 @@ form {
     height: 34px;
     width: 100%;
     border-radius: 3px;
-    border-width:1px;
+    border-width: 1px;
     border-color: #c7bfbf;
     border-style: solid;
 
-    font-size:1em;
-    padding-left:0.6em;
+    font-size: 1em;
+    padding-left: 0.6em;
   }
 
   .dropdown-content {
@@ -38,11 +38,35 @@ form {
 }
 
 .form-row {
-  height: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 3em;
+  margin-bottom: 1.5em;
   width: 50%;
   min-width: 400px;
 }
 
 .form-row:first-child {
   margin-top: 2em;
+}
+
+.country-selector {
+  display: flex;
+  height: 1em;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 1em;
+  align-items: center;
+
+  & input {
+    height: 1em;
+    width: auto;
+    margin-right: 0.3em;
+  }
+
+  &-container {
+    margin-right: 2em;
+    cursor: pointer;
+  }
 }

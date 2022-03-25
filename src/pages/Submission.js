@@ -1,10 +1,11 @@
 import Success from "../assets/images/success.svg";
+import Back from "../components/generic/Back";
 
 const Submission = () => {
   return (
     <>
       <div className="content">
-        <span className="back-button"></span>
+        <Back />
         <div className="submission-container">
           <div className="submission-header">
             <div className="submission-header__image">

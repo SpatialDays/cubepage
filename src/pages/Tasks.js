@@ -7,9 +7,9 @@ import { useHistory } from "react-router";
 const Tasks = ({ tasks, setTasks, setSettings }) => {
   const history = useHistory();
 
-  useEffect(() => {
+  useEffect(async () => {
     if (!tasks) {
-      fetchTasks(setTasks, setSettings);
+      await fetchTasks(setTasks, setSettings);
     }
   }, []);
 
@@ -26,10 +26,22 @@ const Tasks = ({ tasks, setTasks, setSettings }) => {
       <div className="content__subtitle">
         <div className="content__subtitle-text">
           <small>
-            In publishing and graphic design, Lorem ipsum is a placeholder text
-            commonly used to demonstrate the visual form of a document or a
-            typeface without relying on meaningful content. Lorem ipsum may be
-            used as a placeholder before final copy is available.
+            The <a href="https://www.opendatacube.org/">Open Data Cube</a> (ODC) is an open source geospatial data
+            management and analysis software project that helps harness the
+            power of Earth Observation data.
+            <br /> <br/>
+            The <a href="https://www.commonsensing.org.uk/">CommonSensing Project</a> has implemented a Data Cube to store
+            Analysis Ready Data (ARD) satellite data and some derived datasets
+            for a number of satellite sensors (Sentinel-1, Sentinel-2, Landsat
+            4/5/7/8 and SPOT 1 to 5) for Fiji, Vanuatu and the Solomon Islands.
+            <br /><br/>
+            From this page, technical users can launch queries on-demand of our
+            Data Cube to produce derived Data Products. All the user needs to do
+            is select the required Data Product, select the required
+            Area-Of-Interest and provide the relevant input parameters and our
+            Data Cube will produce the required Data Product and provide the
+            user with a download link to it.
+            <br/><br/>
           </small>
         </div>
       </div>

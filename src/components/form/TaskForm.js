@@ -14,7 +14,7 @@ import CardImage from "../card/CardImage";
 import { submitTasks } from "../../utils/utils";
 import { useState } from "react";
 
-const TaskForm = ({ task, settings }) => {
+const TaskForm = ({ task, settings, availableProjects }) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
 
@@ -62,7 +62,9 @@ const TaskForm = ({ task, settings }) => {
         <WKTField
           arg={arg}
           error={errors[arg.name]}
+          setErrorMessage={setErrorMessage}
           setValue={setValue}
+          availableProjects={availableProjects}
           runValidation={runValidation}
         />
       );

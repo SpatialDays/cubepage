@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { MapContainer, TileLayer, FeatureGroup } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 
 import onClickOutside from "react-onclickoutside";
 
-const DrawMap = ({ setAOI, showMap }) => {
+const DrawMap = ({ setAOI, showMap, country }) => {
+
+  const [mapCenter, setMapCenter] = useState(country.center);
+
   DrawMap.handleClickOutside = () => {
     showMap(false);
   };
@@ -16,37 +20,56 @@ const DrawMap = ({ setAOI, showMap }) => {
     const maxX = bounds._northEast.lng;
     const maxY = bounds._northEast.lat;
 
-
-    const aoi = 'POLYGON((' + 
-      minX + ' ' + minY + ',' +
-      maxX + ' ' + minY + ',' +
-      maxX + ' ' + maxY + ',' +
-      minX + ' ' + maxY + ',' +
-      minX + ' ' + minY + '))'
+    const aoi =
+      "POLYGON((" +
+      minX +
+      " " +
+      minY +
+      "," +
+      maxX +
+      " " +
+      minY +
+      "," +
+      maxX +
+      " " +
+      maxY +
+      "," +
+      minX +
+      " " +
+      maxY +
+      "," +
+      minX +
+      " " +
+      minY +
+      "))";
 
     setAOI(aoi);
   };
 
   const handleDelete = () => {
-    setAOI('');
-  }
+    setAOI("");
+  };
 
   const handleMount = () => {
-    const drawTool = document.getElementsByClassName('leaflet-draw-draw-rectangle')
+    const drawTool = document.getElementsByClassName(
+      "leaflet-draw-draw-rectangle"
+    );
     if (drawTool.length === 1) {
-      drawTool[0].click()
+      drawTool[0].click();
     }
-  }
+  };
 
   return (
     <>
-      <MapContainer center={[-17.5, 178.5]} zoom={7}>
+      <MapContainer center={mapCenter} zoom={7}>
         <FeatureGroup>
           <EditControl
             position="topright"
             onCreated={handleCreate}
             onDeleted={handleDelete}
             onMounted={handleMount}
+            onDrawStart={() => {
+            }}
             draw={{
               rectangle: true,
               polyline: false,

@@ -4,10 +4,10 @@ const Login = () => {
   return (
     <>
       <div className="content login_form">
-        <h1>Login</h1>
-        <div className="form-row">
-          <LoginForm />
+        <div className="login_form--title">
+          <h1>Login</h1>
         </div>
+          <LoginForm />
       </div>
     </>
   );

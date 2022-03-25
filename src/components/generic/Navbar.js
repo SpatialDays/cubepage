@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-
-import Logo from '../../assets/images/logo-small.svg'
+import { checkToken, deleteToken } from "../../utils/token";
+import Logo from "../../assets/images/logo-small.svg";
 
 import "../../assets/styles/navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ setTasks }) => {
   const location = useLocation();
 
   const checkActiveTab = (tab) => {
@@ -19,11 +19,7 @@ const Navbar = () => {
         <div className="wrapper">
           <div className="logo">
             <a href="https://www.commonsensing.org.uk/">
-              <img
-                src={Logo}
-                alt="The Site Logo"
-                id="logo-all"
-              />
+              <img src={Logo} alt="The Site Logo" id="logo-all" />
             </a>
           </div>
           <div id="menu">
@@ -55,13 +51,44 @@ const Navbar = () => {
                 <li className=" level-0 active parent ">
                   <a href="/tasks">Resources</a>
                   <ul>
+                    {checkToken() ? (
+                      <>
+                        <li
+                          className={`level-1 ${
+                            checkActiveTab("logout") ? "active" : ""
+                          }`}
+                        >
+                          <Link
+                            onClick={() => {
+                              setTasks(null);
+                              deleteToken(setTasks);
+                            }}
+                            to="/logout"
+                          >
+                            LOGOUT
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li
+                          className={`level-1 ${
+                            checkActiveTab("login") ? "active" : ""
+                          }`}
+                        >
+                          <Link to="/login">LOGIN</Link>
+                        </li>
+                      </>
+                    )}
+
                     <li
                       className={`level-1 ${
-                        checkActiveTab("login") ? "active" : ""
+                        checkActiveTab("queue") ? "active" : ""
                       }`}
                     >
-                      <Link to="/login">LOGIN</Link>
+                      <Link to="/queue">QUEUE</Link>
                     </li>
+
                     <li
                       className={`level-1 ${
                         checkActiveTab("tasks") ? "active" : ""
