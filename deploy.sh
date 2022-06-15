@@ -1,11 +1,11 @@
 tag=$(cat tag)
 app="cubepage"
 ns="$app"
-github_user="jackjoy"
+github_user="spatialtest"
 
 git pull
 docker build . -t $github_user/$app:$tag
-docker push jackjoy/$app:$tag
+docker push spatialtest/$app:$tag
 cat deploy.yaml.template | sed "s/@@@@tag@@@@/$tag/g" | sed "s/@@@@app@@@@/$app/g" | sed "s/@@@@ns@@@@/$ns/g" >deploy.yaml
 kubectl apply -f deploy.yaml
 echo "sleeping for 10 seconds to wait for deployment"
