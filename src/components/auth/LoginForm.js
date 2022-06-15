@@ -63,7 +63,7 @@ const LoginForm = () => {
             error={errors.password}
           />
           <div className="forgotten-password">
-            <a target="_blank" rel="noreferrer" href="http://localhost:3434/forgotten-password">Forgotten password?</a>
+            <a target="_blank" rel="noreferrer" href="https://projects.csopenportal.co.uk/forgotten-password">Forgotten password?</a>
           </div>
         </div>
         <div className="form-row">

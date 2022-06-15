@@ -14,13 +14,12 @@ const Login = () => {
           <div className="content__subtitle-text">
             <small>
               Welcome to the CommonSensing Cube Page. Please login to view and launch cube products.<br/><br/>
-              If you don't have an account,  <a target="_blank" rel="noreferrer" href="http://localhost:3434/register">please register here</a> and wait for admin approval.
+              If you don't have an account,  <a target="_blank" rel="noreferrer" href="https://projects.csopenportal.co.uk/register">please register here</a> and wait for admin approval.
               <br />
               <br />
             </small>
           </div>
         </div>
-          <LoginForm />
       </div>
 
       <div className="login_form">
