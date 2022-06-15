@@ -4,6 +4,7 @@ import Tasks from "./pages/Tasks";
 import Submission from "./pages/Submission";
 import Queue from "./pages/Queue";
 import Navbar from "./components/generic/Navbar";
+import Footer from "./components/generic/Footer";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -29,7 +30,7 @@ function App() {
       }
       setAvailableProjects(projects);
     }
-  }, []);
+  }, [availableProjects]);
 
   useEffect(() => {
     const FIFTEEN_MINUTES = 1000 * 60 * 15;
@@ -83,6 +84,7 @@ function App() {
         <Route render={() => <Redirect to={{ pathname: "/" }} />} />
         <Route component={Error} />
       </Switch>
+      <Footer />
     </main>
   );
 }

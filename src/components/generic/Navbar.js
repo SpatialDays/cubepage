@@ -83,19 +83,23 @@ const Navbar = ({ setTasks }) => {
 
                     <li
                       className={`level-1 ${
-                        checkActiveTab("queue") ? "active" : ""
-                      }`}
-                    >
-                      <Link to="/queue">QUEUE</Link>
-                    </li>
-
-                    <li
-                      className={`level-1 ${
                         checkActiveTab("tasks") ? "active" : ""
                       }`}
                     >
                       <Link to="/tasks">TASKS</Link>
                     </li>
+
+                    {checkToken() && (
+                      <>
+                        <li
+                          className={`level-1 ${
+                            checkActiveTab("queue") ? "active" : ""
+                          }`}
+                        >
+                          <Link to="/queue">QUEUE</Link>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </li>
               </ul>

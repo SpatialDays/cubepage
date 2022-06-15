@@ -16,7 +16,7 @@ const Submission = () => {
             </div>
           </div>
           <div className="submission-text">
-            <p>Your request is being processed. Your product will appear <a target="_blank" href="https://arcgis01.satapps.org/portal/home/">here</a> when it is ready.</p>
+            <p>Your request is being processed. Your product will appear <a target="_blank" rel="noreferrer" href="https://arcgis01.satapps.org/portal/home/">here</a> when it is ready.</p>
           </div>
         </div>
       </div>

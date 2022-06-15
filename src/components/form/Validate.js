@@ -48,9 +48,10 @@ const Validate = (values, settings, taskName) => {
         maxValues.push(range[1]);
       }
     });
+    var minBound, maxBound;
     if (typeof minValues[0] === "number") {
-      var minBound = Math.max.apply(null, minValues);
-      var maxBound = Math.min.apply(null, maxValues);
+      minBound = Math.max.apply(null, minValues);
+      maxBound = Math.min.apply(null, maxValues);
       if (minBound < maxBound)
         validatedRanges.push({
           id: setting,
@@ -62,15 +63,15 @@ const Validate = (values, settings, taskName) => {
     }
     // Must be Date
     if (typeof minValues[0] === "string") {
-      var minBound = new Date(minValues[0]);
-      for (var i = 1; i < minValues.length; i++) {
+      minBound = new Date(minValues[0]);
+      for (let i = 1; i < minValues.length; i++) {
         if (new Date(minValues[i]) > minBound) {
           minBound = new Date(minValues[i]);
         }
       }
       if (maxValues.length) {
-        var maxBound = new Date(maxValues[0]);
-        for (var i = 1; i < maxValues.length; i++) {
+        maxBound = new Date(maxValues[0]);
+        for (let i = 1; i < maxValues.length; i++) {
           if (new Date(maxValues[i]) < maxBound) {
             maxBound = new Date(maxValues[i]);
           }

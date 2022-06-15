@@ -123,7 +123,7 @@ const TaskForm = ({ task, settings, availableProjects }) => {
           <div className="task-header__card-right">
             <div className="task-header__card-right-title">
               <h1>
-                <a target="_blank" href={task.info_url}>
+                <a target="_blank" rel="noreferrer" href={task.info_url}>
                   {task.display_name}
                 </a>
               </h1>

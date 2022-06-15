@@ -36,7 +36,6 @@ export const fetchActiveTasks = async (
     headers: headers,
   })
     .then(function (response) {
-      console.log(response);
       setActiveTasks(response.data);
       setLoadingActiveTasks(false);
     })
@@ -45,6 +44,33 @@ export const fetchActiveTasks = async (
         //window.location.href = "/login";
       }
       setLoadingActiveTasks(false);
+    });
+};
+
+export const fetchTaskNames = async (setTaskNames) => {
+  const axios = require("axios");
+  const headers = {
+    "Content-Type": "application/json; charset=utf-8;",
+  };
+  await axios({
+    method: "post",
+    url: process.env.REACT_APP_PORTAL_URL + "/fetch-products",
+    headers: headers,
+    data: { token: window.localStorage.getItem("cubetoken") },
+  })
+    .then(function (response) {
+      // Create a dictionary of name to display_name
+      const taskNames = {};
+      response.data.result.forEach((task) => {
+        taskNames[task.name] = task.display_name.trim();
+      });
+      setTaskNames(taskNames);
+    })
+    .catch(function (error) {
+      console.log(error);
+      if ((error.response && error.response.status > 400) || !error.response) {
+        //window.location.href = "/login";
+      }
     });
 };
 
@@ -68,10 +94,9 @@ export const checkTask = async (taskid, setActiveTasks) => {
         //window.location.href = "/login";
       }
     });
-}
+};
 
-export const fetchResults = async (setResults, setLoadingResults) => {
-  setLoadingResults(true);
+export const fetchResults = async (setResults) => {
   const axios = require("axios");
   const headers = {
     "Content-Type": "application/json; charset=utf-8;",
@@ -84,39 +109,17 @@ export const fetchResults = async (setResults, setLoadingResults) => {
   })
     .then(function (response) {
       setResults(response.data);
-      setLoadingResults(false);
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
         //window.location.href = "/login";
       }
       console.log("Failed to fetch results ::", error);
-      setLoadingResults(false);
     });
 };
 
-const base64ToBlob = (base64, mimetype, slicesize) => {
-  if (!window.atob || !window.Uint8Array) {
-      // The current browser doesn't have the atob function. Cannot continue
-      return null;
-  }
-  mimetype = mimetype || '';
-  slicesize = slicesize || 512;
-  var bytechars = atob(base64);
-  var bytearrays = [];
-  for (var offset = 0; offset < bytechars.length; offset += slicesize) {
-      var slice = bytechars.slice(offset, offset + slicesize);
-      var bytenums = new Array(slice.length);
-      for (var i = 0; i < slice.length; i++) {
-          bytenums[i] = slice.charCodeAt(i);
-      }
-      var bytearray = new Uint8Array(bytenums);
-      bytearrays[bytearrays.length] = bytearray;
-  }
-  return new Blob(bytearrays, {type: mimetype});
-};
-
 export const downloadResult = async (taskId) => {
+  // Downloads the result ZIP from the server
   const axios = require("axios");
   const headers = {
     "Content-Type": "application/json; charset=utf-8;",
@@ -126,35 +129,21 @@ export const downloadResult = async (taskId) => {
     method: "get",
     url: process.env.REACT_APP_PORTAL_URL + "/result/" + taskId,
     headers: headers,
-    responseType: "arraybuffer",
+    responseType: "blob",
   })
     .then(function (response) {
-      // download zip file
-      var blob = base64ToBlob(
-        btoa(
-          String.fromCharCode.apply(
-            null,
-            new Uint8Array(response.data)
-          )
-        ),
-        "application/zip"
-      );
-      var url = window.URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = "result.zip";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-
-
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "result.zip");
+      document.body.appendChild(link);
+      link.click();
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
-        //window.location.href = "/login";
+        console.log('Failed to download result ::', error);
+        alert("Failed to download result");
       }
-
-      console.log(error);
     });
 };
 
@@ -171,7 +160,7 @@ export const submitTasks = async (task, data, setLoading, setErrorMessage) => {
       token: window.localStorage.getItem("cubetoken"),
     })
     .then(() => {
-      //window.location.href = "/submission";
+      window.location.href = "/submission";
       setLoading(false);
     })
     .catch((error) => {

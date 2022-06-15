@@ -5,7 +5,6 @@ import { EditControl } from "react-leaflet-draw";
 import onClickOutside from "react-onclickoutside";
 
 const DrawMap = ({ setAOI, showMap, country }) => {
-
   const [mapCenter, setMapCenter] = useState(country.center);
 
   DrawMap.handleClickOutside = () => {
@@ -68,8 +67,7 @@ const DrawMap = ({ setAOI, showMap, country }) => {
             onCreated={handleCreate}
             onDeleted={handleDelete}
             onMounted={handleMount}
-            onDrawStart={() => {
-            }}
+            onDrawStart={() => {}}
             draw={{
               rectangle: true,
               polyline: false,

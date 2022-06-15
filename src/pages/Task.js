@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import TaskForm from "../components/form/TaskForm";
 import { fetchTasks, findElementInListOfObjects } from "../utils/utils";
 import Back from "../components/generic/Back";
@@ -36,7 +36,11 @@ const Task = ({
 
         {selectedTask ? (
           <>
-            <TaskForm task={selectedTask} settings={settings} availableProjects={availableProjects} />
+            <TaskForm
+              task={selectedTask}
+              settings={settings}
+              availableProjects={availableProjects}
+            />
           </>
         ) : (
           <h1>Loading...</h1>

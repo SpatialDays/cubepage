@@ -35,7 +35,9 @@ const WKTField = ({
     },
   };
 
-  const [selectedCountry, setSelectedCountry] = useState(availableProjects[0]);
+  const [selectedCountry, setSelectedCountry] = useState(
+    availableProjects[window.sessionStorage.getItem("defaultCountryIndex") || 0] 
+  );
   const [map, showMap] = useState(false);
   const [AOI, setAOI] = useState("");
 
@@ -67,11 +69,12 @@ const WKTField = ({
         .catch(function (error, data) {
           const response = error.response.data;
           let errorMsg = "";
-          if (response.length > 0) {
-            let errors = []
+          if (Array.isArray(response) && response.length > 0) {
+            let errors = [];
             response.forEach((element) => {
               errors.push(element.Error);
             });
+
             errorMsg = errors.join(", \n");
           }
           setErrorMessage(errorMsg);
@@ -84,10 +87,15 @@ const WKTField = ({
       <div className="country-selector">
         {availableProjects.map((country, index) => (
           <div
-            className="country-selector-container"
+            className={`country-selector-container  ${
+              selectedCountry === country ? "selected" : ""
+            }`}
             onClick={() => {
               setSelectedCountry(country);
               setAOI("");
+
+              // Save the index to session storage
+              window.sessionStorage.setItem("defaultCountryIndex", index);
             }}
           >
             <input

@@ -14,6 +14,7 @@ const LoginForm = () => {
     defaultValues: { name: "", pass: "" },
 
     onSubmit: (values) => {
+      setShowLoading(true);
       requestToken(values.name, values.pass, setError).then((response) => {
         if (response === 200) {
           window.location.href = "/tasks";
@@ -44,6 +45,7 @@ const LoginForm = () => {
             label="Username"
             id="name"
             name="name"
+            placeholder="Username"
             required
             minLength={4}
             error={errors.username}
@@ -54,19 +56,21 @@ const LoginForm = () => {
             label="Password"
             id="pass"
             name="pass"
+            placeholder="Password"
             type="password"
             required
             minLength={6}
             error={errors.password}
           />
+          <div className="forgotten-password">
+            <a target="_blank" rel="noreferrer" href="http://localhost:3434/forgotten-password">Forgotten password?</a>
+          </div>
         </div>
         <div className="form-row">
           <input
             type="submit"
-            onClick={() => {
-              setShowLoading(true);
-            }}
             value="Login"
+            className="button__hover"
           />
         </div>
       </form>

@@ -44,6 +44,19 @@
 
     }
   }
+
+  &-col {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+
+    &:nth-child(3) {
+      width: 20%;
+      text-align: right;
+    }
+
+  }
 }
 
 .results {
