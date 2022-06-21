@@ -14,7 +14,6 @@ const Queue = () => {
   const [taskNames, setTaskNames] = useState([]);
   const [activeTasks, setActiveTasks] = useState([]);
   const [loadingActiveTasks, setLoadingActiveTasks] = useState(false);
-  const [downloadingTasks, setDownloadingTasks] = useState([]);
 
   const [results, setResults] = useState([]);
 
@@ -83,54 +82,24 @@ const Queue = () => {
           <div className="content__title">
             <h1 key="widget">Your Outputs</h1>
           </div>
-          {downloadingTasks.length ? (
-            <>
-              <div className="downloading">
-                <small className="downloading__info">
-                  Preparing your download of {downloadingTasks.length} tasks.
-                  Please do not leave this page, it may take a few minutes.
-                </small>
 
-                <div className="downloading__container">
-                  <div className="downloading__progress">
-                    <CircularProgress />
-                  </div>
-                  <ul className="downloading__list">
-                    <li key="tasks" className="downloading__list-header">
-                      <p>Downloading:</p>
-                    </li>
-                    {downloadingTasks.map((task, i) => {
-                      return (
-                        <li className="downloading__list-item" key={i}>
-                          <p><b>Name: </b>{task.taskName}</p>
-                          <p><b>ID: </b>{task.taskId}</p>
-                          <p><b>Date: </b>{task.date}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="content__subtitle">
-              <div className="content__subtitle-text">
-                <small>
-                  These are the results from your tasks. Click on the row to
-                  download the relevant{" "}
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://support.microsoft.com/en-us/windows/zip-and-unzip-files-8d28fa72-f2f9-712f-67df-f80cf89fd4e5"
-                  >
-                    ZIP file
-                  </a>
-                  .
-                </small>
-              </div>
+          <div className="content__subtitle">
+            <div className="content__subtitle-text">
+              <small>
+                These are the results from your tasks. Click on the row to
+                download the relevant{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://support.microsoft.com/en-us/windows/zip-and-unzip-files-8d28fa72-f2f9-712f-67df-f80cf89fd4e5"
+                >
+                  ZIP file
+                </a>
+                .
+              </small>
             </div>
-          )}
-          {results && results.length ? (
+          </div>
+          {results && (
             <div class="queue results-table">
               <div className="results-row-container">
                 {[...results].reverse().map((result, i) => {
@@ -141,18 +110,7 @@ const Queue = () => {
                   return (
                     <div
                       key={i}
-                      onClick={() => {
-                        // Add the task to the downloading tasks
-                        setDownloadingTasks([
-                          ...downloadingTasks,
-                          {
-                            taskName:displayName,
-                            taskId: result.taskid,
-                            date: new Date().toLocaleString(),
-                          },
-                        ]);
-                        downloadResult(result.taskid, downloadingTasks, setDownloadingTasks);
-                      }}
+                      onClick={() => downloadResult(result.taskid)}
                       className="queue-row"
                     >
                       <div className="queue-col">
@@ -168,11 +126,6 @@ const Queue = () => {
                   );
                 })}
               </div>
-            </div>
-          ) : (
-            <div className="loading">
-              You don't currently have any outputs. Launch a task to generate
-              your first product.
             </div>
           )}
         </div>

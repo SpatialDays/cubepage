@@ -118,7 +118,7 @@ export const fetchResults = async (setResults) => {
     });
 };
 
-export const downloadResult = async (taskId, downloadingTasks, setDownloadingTasks) => {
+export const downloadResult = async (taskId) => {
   // Downloads the result ZIP from the server
   const axios = require("axios");
   const headers = {
@@ -132,11 +132,6 @@ export const downloadResult = async (taskId, downloadingTasks, setDownloadingTas
     responseType: "blob",
   })
     .then(function (response) {
-      // Remove from the list of downloading tasks
-      setDownloadingTasks(
-        downloadingTasks.filter((task) => task.id !== taskId)
-      );
-
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -145,10 +140,6 @@ export const downloadResult = async (taskId, downloadingTasks, setDownloadingTas
       link.click();
     })
     .catch(function (error) {
-      setDownloadingTasks(
-        downloadingTasks.filter((task) => task.id !== taskId)
-      );
-
       if ((error.response && error.response.status > 400) || !error.response) {
         console.log('Failed to download result ::', error);
         alert("Failed to download result");
