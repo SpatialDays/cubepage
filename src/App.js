@@ -33,10 +33,10 @@ function App() {
   }, [availableProjects]);
 
   useEffect(() => {
-    const FIFTEEN_MINUTES = 1000 * 60 * 15;
+    const FIVE_MINUTES = 1000 * 60 * 5;
     const interval = setInterval(() => {
       if (window.localStorage.getItem("cubetoken")) refreshToken();
-    }, FIFTEEN_MINUTES);
+    }, FIVE_MINUTES);
     return () => clearInterval(interval);
   }, []);
 

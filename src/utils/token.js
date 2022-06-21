@@ -37,7 +37,8 @@ export const refreshToken = async () => {
       window.localStorage.setItem("cubetoken", response.data.token);
     })
     .catch(function (error) {
-      console.log(error);
+      deleteToken();
+      window.location.href = "/login?error=token-expired";
     });
 };
 

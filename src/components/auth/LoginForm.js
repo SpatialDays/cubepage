@@ -6,8 +6,23 @@ import { requestToken } from "../../utils/token";
 import Field from "../form/Field";
 import { useState } from "react";
 
+const checkError = (search) => {
+  let errorMsgs = {
+    "token-expired": "Your session has expired. Please login again.",
+  };
+  if (search) {
+    if (search.includes("error=")) {
+      let error = search.split("error=")[1];
+      if (errorMsgs[error]) {
+        return errorMsgs[error];
+      }
+    }
+  }
+  return null;
+};
+
 const LoginForm = () => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(checkError(window.location.search));
   const [showLoading, setShowLoading] = useState(false);
 
   const { form, use } = useForm({
@@ -63,15 +78,17 @@ const LoginForm = () => {
             error={errors.password}
           />
           <div className="forgotten-password">
-            <a target="_blank" rel="noreferrer" href="https://projects.csopenportal.co.uk/forgotten-password">Forgotten password?</a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://projects.csopenportal.co.uk/forgotten-password"
+            >
+              Forgotten password?
+            </a>
           </div>
         </div>
         <div className="form-row">
-          <input
-            type="submit"
-            value="Login"
-            className="button__hover"
-          />
+          <input type="submit" value="Login" className="button__hover" />
         </div>
       </form>
       <div className="form-row circularProgress">
