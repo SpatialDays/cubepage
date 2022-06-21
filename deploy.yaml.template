@@ -70,4 +70,5 @@ spec:
   tls:
   - hosts:
     - @@@@app@@@@.csopenportal.co.uk
+    secretName: ssl-csopenportal-cert
 
