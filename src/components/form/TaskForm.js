@@ -73,7 +73,9 @@ const TaskForm = ({ task, settings, availableProjects }) => {
         <IntField arg={arg} setValue={setValue} error={errors[arg.name]} />
       );
     } else if (arg.type === "float") {
-      return <FloatField arg={arg} error={errors[arg.name]} />;
+      return (
+        <FloatField arg={arg} setValue={setValue} error={errors[arg.name]} />
+      );
     } else if (arg.type === "date") {
       return (
         <DateField
