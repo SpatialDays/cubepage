@@ -143,7 +143,7 @@ const Queue = () => {
             <div class="queue results-table">
               <div className="results-row-container">
                 {[...results].reverse().map((result, i) => {
-                  if (result.status != "success") {
+                  if (result.status != "complete") {
                     return null;
                   }
                   // Load the JSON of result.data
