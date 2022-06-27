@@ -123,13 +123,11 @@ main {
 }
 
 .success svg path {
-  color: #3D7E44;
+  color: #3d7e44;
 }
 
 .failed svg path {
-  color:rgba(156, 24, 24, 0.578)!important;
-
-
+  color: rgba(156, 24, 24, 0.578) !important;
 }
 
 .forgotten-password {
@@ -355,8 +353,30 @@ input[type="radio"]:checked:after {
   }
 }
 
-// Test Page
+.error {
+  &-bar {
+    margin-top:5em;
+    display:flex;
+    justify-content: flex-end;
+    width:100%;
+  }
 
+  &-text {
+    width:30%;
+
+    & input {
+      width:10%;
+      min-width:10em;
+
+      &:hover {
+        background-color:#3d7e4360;
+      }
+
+    }
+  }
+}
+
+// Test Page
 
 .test {
   display: flex;
@@ -370,7 +390,7 @@ input[type="radio"]:checked:after {
   &-item {
     display: flex;
     width: 100%;
-    max-width:60em;
+    max-width: 60em;
     margin-right: 1em;
     margin-left: 1em;
     flex-direction: column;
@@ -385,10 +405,9 @@ input[type="radio"]:checked:after {
       background-color: #1f742716;
     }
 
-
     &-top {
-      width:100%;
-      display:flex;
+      width: 100%;
+      display: flex;
       align-items: center;
       justify-content: center;
 
@@ -401,21 +420,20 @@ input[type="radio"]:checked:after {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding:2em;
+        padding: 2em;
 
         &__small {
-          width:10%;
+          width: 10%;
           padding: 2em;
         }
       }
 
       &__run {
-        width:100%;
+        width: 100%;
       }
 
       &__history {
-        width:100%;
-
+        width: 100%;
       }
 
       &__button {
@@ -443,7 +461,7 @@ input[type="radio"]:checked:after {
       justify-content: center;
 
       &-row {
-        width:100%;
+        width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -461,11 +479,11 @@ input[type="radio"]:checked:after {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding:1em;
+        padding: 1em;
 
         &__small {
-          width:10%;
-          padding:1em;
+          width: 10%;
+          padding: 1em;
         }
       }
     }

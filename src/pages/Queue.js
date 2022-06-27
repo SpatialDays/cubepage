@@ -15,6 +15,7 @@ const Queue = () => {
   const [activeTasks, setActiveTasks] = useState([]);
   const [loadingActiveTasks, setLoadingActiveTasks] = useState(false);
   const [downloadingTasks, setDownloadingTasks] = useState([]);
+  const [showErrors, setShowErrors] = useState(false);
 
   const [results, setResults] = useState([]);
 
@@ -192,49 +193,23 @@ const Queue = () => {
             </div>
           )}
         </div>
-        <div className="results">
-          <div className="content__title">
-            <h1 key="widget">Errors</h1>
+        <div className="error-bar">
+          <div className="error-text queue__button">
+            <input
+              type="button"
+              className="task-submit"
+              value={`${showErrors ? 'Hide' : 'Show'} Errors`}
+              onClick={() => {
+                setShowErrors(!showErrors);
+              }}
+            />
           </div>
-          {downloadingTasks.length ? (
-            <>
-              <div className="downloading">
-                <small className="downloading__info">
-                  Preparing your download of {downloadingTasks.length} tasks.
-                  Please do not leave this page, it may take a few minutes.
-                </small>
-
-                <div className="downloading__container">
-                  <div className="downloading__progress">
-                    <CircularProgress />
-                  </div>
-                  <ul className="downloading__list">
-                    <li key="tasks" className="downloading__list-header">
-                      <p>Downloading:</p>
-                    </li>
-                    {downloadingTasks.map((task, i) => {
-                      return (
-                        <li className="downloading__list-item" key={i}>
-                          <p>
-                            <b>Name: </b>
-                            {task.taskName}
-                          </p>
-                          <p>
-                            <b>ID: </b>
-                            {task.taskId}
-                          </p>
-                          <p>
-                            <b>Date: </b>
-                            {task.date}
-                          </p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </>
-          ) : (
+        </div>
+        {showErrors && (
+          <div className="results">
+            <div className="content__title">
+              <h1 key="widget">Errors</h1>
+            </div>
             <div className="content__subtitle">
               <div className="content__subtitle-text">
                 <small>
@@ -247,55 +222,56 @@ const Queue = () => {
                 </small>
               </div>
             </div>
-          )}
-          {results && results.length > 0 && (
-            <div class="queue results-table">
-              <div className="results-row-container">
-                {[...results].reverse().map((result, i) => {
-                  if (result.status != "failed") {
-                    return null;
-                  }
-                  // Load the JSON of result.data
-                  const data = JSON.parse(result.data);
-                  const taskName = data.task;
-                  const displayName = taskNames[taskName];
-                  return (
-                    <div
-                      key={i}
-                      onClick={() => {
-                        // Add the task to the downloading tasks
-                        setDownloadingTasks([
-                          ...downloadingTasks,
-                          {
-                            taskName: displayName,
-                            taskId: result.taskid,
-                            date: new Date().toLocaleString(),
-                          },
-                        ]);
-                        downloadResult(
-                          result.taskid,
-                          downloadingTasks,
-                          setDownloadingTasks
-                        );
-                      }}
-                      className="queue-row"
-                    >
-                      <div className="queue-col">
-                        <p>{displayName}</p>
+
+            {results && results.length > 0 && (
+              <div class="queue results-table">
+                <div className="results-row-container">
+                  {[...results].reverse().map((result, i) => {
+                    if (result.status != "failed") {
+                      return null;
+                    }
+                    // Load the JSON of result.data
+                    const data = JSON.parse(result.data);
+                    const taskName = data.task;
+                    const displayName = taskNames[taskName];
+                    return (
+                      <div
+                        key={i}
+                        onClick={() => {
+                          // Add the task to the downloading tasks
+                          setDownloadingTasks([
+                            ...downloadingTasks,
+                            {
+                              taskName: displayName,
+                              taskId: result.taskid,
+                              date: new Date().toLocaleString(),
+                            },
+                          ]);
+                          downloadResult(
+                            result.taskid,
+                            downloadingTasks,
+                            setDownloadingTasks
+                          );
+                        }}
+                        className="queue-row"
+                      >
+                        <div className="queue-col">
+                          <p>{displayName}</p>
+                        </div>
+                        <div className="queue-col">
+                          <p>{result.dateCompleted}</p>
+                        </div>
+                        <div className="queue-col">
+                          <p>View log</p>
+                        </div>
                       </div>
-                      <div className="queue-col">
-                        <p>{result.dateCompleted}</p>
-                      </div>
-                      <div className="queue-col">
-                        <p>View log</p>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

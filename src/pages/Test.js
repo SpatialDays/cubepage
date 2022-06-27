@@ -163,7 +163,7 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
                             </div>
                             <div className="test-item-bottom-col__small">
                               <div className="test-item-bottom__title">
-                                {h2.status === "success" && (
+                                {h2.status === "complete" && (
                                   <div className="success">
                                     <CheckCircleIcon />
                                   </div>
