@@ -10,11 +10,15 @@ export const fetchTasks = async (setTasks, setSettings) => {
     data: { token: window.localStorage.getItem("cubetoken") },
   })
     .then(function (response) {
-      setSettings(response.data.settings);
+      if (setSettings) {
+        setSettings(response.data.settings);
+      }
+
       setTasks(response.data.result);
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
+        console.log(error);
         window.location.href = "/login";
       }
     });
@@ -118,7 +122,42 @@ export const fetchResults = async (setResults) => {
     });
 };
 
-export const downloadResult = async (taskId, downloadingTasks, setDownloadingTasks) => {
+export const fetchHistory = async (task, history, setHistory) => {
+  const axios = require("axios");
+  const headers = {
+    "Content-Type": "application/json; charset=utf-8;",
+    Authorization: "Bearer " + window.localStorage.getItem("cubetoken"),
+  };
+  await axios({
+    method: "get",
+    url: process.env.REACT_APP_PORTAL_URL + "/history/" + task,
+    headers: headers,
+  })
+    .then(function (response) {
+      // Loop through the history and add to the history result where task matches
+      let newHistory = history.map((item) => {
+        if (item.task === task) {
+          return { ...item, history: response.data };
+        }
+        return item;
+      });
+
+      setHistory(newHistory);
+      return newHistory;
+    })
+    .catch(function (error) {
+      if ((error.response && error.response.status > 400) || !error.response) {
+        //window.location.href = "/login";
+      }
+      console.log("Failed to fetch history ::", error);
+    });
+};
+
+export const downloadResult = async (
+  taskId,
+  downloadingTasks,
+  setDownloadingTasks
+) => {
   // Downloads the result ZIP from the server
   const axios = require("axios");
   const headers = {
@@ -150,7 +189,7 @@ export const downloadResult = async (taskId, downloadingTasks, setDownloadingTas
       );
 
       if ((error.response && error.response.status > 400) || !error.response) {
-        console.log('Failed to download result ::', error);
+        console.log("Failed to download result ::", error);
         alert("Failed to download result");
       }
     });

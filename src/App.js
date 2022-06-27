@@ -3,6 +3,7 @@ import Task from "./pages/Task";
 import Tasks from "./pages/Tasks";
 import Submission from "./pages/Submission";
 import Queue from "./pages/Queue";
+import Test from "./pages/Test";
 import Navbar from "./components/generic/Navbar";
 import Footer from "./components/generic/Footer";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -15,6 +16,7 @@ import { refreshToken, deleteToken } from "./utils/token";
 function App() {
   const [tasks, setTasks] = useState(null);
   const [settings, setSettings] = useState(null);
+  const [history, setHistory] = useState([]);
 
   const [availableProjects, setAvailableProjects] = useState(
     window.localStorage.getItem("projects")
@@ -81,6 +83,13 @@ function App() {
         />
         <Route exact path="/queue" component={() => <Queue />} />
         <Route exact path="/submission" component={() => <Submission />} />
+        <Route
+          exact
+          path="/test"
+          component={() => (
+            <Test tasks={tasks} setTasks={setTasks} setSettings={setSettings} history={history} setHistory={setHistory}/>
+          )}
+        />
         <Route render={() => <Redirect to={{ pathname: "/" }} />} />
         <Route component={Error} />
       </Switch>
