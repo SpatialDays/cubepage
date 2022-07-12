@@ -45,7 +45,7 @@ export const fetchActiveTasks = async (
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
-        //window.location.href = "/login";
+        window.location.href = "/login";
       }
       setLoadingActiveTasks(false);
     });
@@ -73,7 +73,7 @@ export const fetchTaskNames = async (setTaskNames) => {
     .catch(function (error) {
       console.log(error);
       if ((error.response && error.response.status > 400) || !error.response) {
-        //window.location.href = "/login";
+        window.location.href = "/login";
       }
     });
 };
@@ -95,7 +95,7 @@ export const checkTask = async (taskid, setActiveTasks) => {
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
-        //window.location.href = "/login";
+        window.location.href = "/login";
       }
     });
 };
@@ -116,7 +116,7 @@ export const fetchResults = async (setResults) => {
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
-        //window.location.href = "/login";
+        window.location.href = "/login";
       }
       console.log("Failed to fetch results ::", error);
     });
@@ -147,10 +147,14 @@ export const fetchHistory = async (task, history, setHistory) => {
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
-        //window.location.href = "/login";
+        window.location.href = "/login";
       }
       console.log("Failed to fetch history ::", error);
     });
+};
+
+export const fetchExampleParams = async (task) => {
+  return "o";
 };
 
 export const downloadResult = async (
@@ -233,6 +237,37 @@ export const submitTasks = async (task, data, setLoading, setErrorMessage) => {
         return;
       }
       setErrorMessage(errorMsg.join(", \n"));
+    });
+};
+
+export const runExampleParams = async (task, ) => {
+  const axios = require("axios");
+
+  let data = {};
+  task.args.forEach((arg) => {
+    data[arg.name] = arg.example_value;
+  });
+
+  var url =
+    process.env.REACT_APP_PORTAL_URL +
+    "/submit-task?APP_KEY=" +
+    window.localStorage.getItem("cubetoken");
+  await axios
+    .post(url, {
+      task: task.task,
+      args: data,
+      token: window.localStorage.getItem("cubetoken"),
+    })
+    .then(() => {})
+    .catch((error) => {
+      var errorMsg;
+      if (error.response && error.response.data) {
+        errorMsg = error.response.data.map((e) => {
+          return e.Error;
+        });
+      }
+
+      console.log(errorMsg);
     });
 };
 

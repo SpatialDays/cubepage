@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchTasks, fetchHistory } from "../utils/utils";
+import { fetchTasks, fetchHistory, runExampleParams } from "../utils/utils";
 import ReactTooltip from "react-tooltip";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -14,7 +14,9 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
           display_name: task.display_name,
           history: [],
           showHistory: false,
+          loadingExample: false,
           status: task.status,
+          args: task.args,
         });
       });
 
@@ -59,9 +61,24 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
                   </div>
                   <div className="test-item-top-col">
                     <div className="test-item-top__run">
-                      <button className="test-item-top__button">
-                        Run wih example params
-                      </button>
+                      {!h.loadingExample ? (
+                        <button
+                          className="test-item-top__button"
+                          onClick={async () => {
+                            await runExampleParams(h);
+                            h.loadingExample = true;
+                            setHistory([...history]);
+                          }}
+                        >
+                          Run with example params
+                        </button>
+                      ) : (
+                        <button className="test-item-top__button running">
+                          <a href="./queue" target="_blank">
+                            Running...
+                          </a>
+                        </button>
+                      )}
                     </div>
                   </div>
                   <div className="test-item-top-col">
@@ -74,8 +91,6 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
 
                           if (h.showHistory) {
                             await fetchHistory(h.task, history, setHistory);
-
-                            console.log("History", history);
                           }
                         }}
                       >

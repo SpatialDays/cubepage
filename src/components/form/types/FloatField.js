@@ -4,7 +4,10 @@ import ErrorField from "../../generic/ErrorField";
 
 const FloatField = ({ arg, error, setValue }) => {
   const handleChange = (name, value) => {
-    setValue(name, parseFloat(value));
+    // Check if value is a number
+    if (isNaN(value)) {
+      setValue(name, parseFloat(value));
+    }
   };
 
   return (
