@@ -25,23 +25,11 @@ const Tasks = ({ tasks, setTasks, setSettings }) => {
   return (
     <div className="content">
       <div className="content__title">
-        <h1 key="widget">Tasks</h1>
+        <h1 key="widget">Data Cube On-Demand</h1>
       </div>
       <div className="content__subtitle">
         <div className="content__subtitle-text">
           <small>
-            The{" "}
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://www.opendatacube.org/"
-            >
-              Open Data Cube
-            </a>{" "}
-            (ODC) is an open source geospatial data management and analysis
-            software project that helps harness the power of Earth Observation
-            data.
-            <br /> <br />
             The{" "}
             <a
               target="_blank"
@@ -53,17 +41,29 @@ const Tasks = ({ tasks, setTasks, setSettings }) => {
             has implemented a Data Cube to store Analysis Ready Data (ARD)
             satellite data and some derived datasets for a number of satellite
             sensors (Sentinel-1, Sentinel-2, Landsat 4/5/7/8 and SPOT 1 to 5)
-            for Fiji, Vanuatu and the Solomon Islands.
+            for Fiji, Vanuatu and the Solomon Islands. The{" "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.opendatacube.org/"
+            >
+              Open Data Cube
+            </a>{" "}
+            (ODC) is an open-source geospatial data management and analysis
+            software project that helps harness the power of Earth Observation
+            data.
             <br />
             <br />
-            From this page, technical users can launch queries on-demand of our
-            Data Cube to produce derived Data Products. All the user needs to do
-            is select the required Data Product, select the required
-            Area-Of-Interest and provide the relevant input parameters and our
-            Data Cube will produce the required Data Product and provide the
-            user with a download link to it.
+            Using this service, technical users can launch on-demand queries of
+            our CommonSensing Data Cube to produce derived Data Products to help
+            with their disaster resilience work. The user needs to select the
+            required Data Product, their Area-Of-Interest and the relevant input
+            parameters. Once submitted, our Data Cube will then produce the
+            required Data Product and make it available to the user via a
+            download link.
             <br />
             <br />
+            The queries that can currently be launched as tasks are listed below:
           </small>
         </div>
       </div>

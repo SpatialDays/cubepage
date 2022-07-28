@@ -36,10 +36,11 @@ const WKTField = ({
   };
 
   const [selectedCountry, setSelectedCountry] = useState(
-    availableProjects[window.sessionStorage.getItem("defaultCountryIndex") || 0] 
+    availableProjects[window.sessionStorage.getItem("defaultCountryIndex") || 0]
   );
+
   const [map, showMap] = useState(false);
-  const [AOI, setAOI] = useState("");
+  const [AOI, setAOI] = useState(arg.default ? arg.default : "");
 
   const handleClick = () => {
     showMap(true);
@@ -51,7 +52,10 @@ const WKTField = ({
   }, [AOI, setValue, runValidation, arg.name]);
 
   useEffect(() => {
-    if (arg.default) setValue(arg.name, arg.default);
+    if (arg.default) {
+      setAOI(arg.default);
+      setValue(arg.name, arg.default);
+    }
   }, [arg.default]);
 
   useEffect(() => {
@@ -112,16 +116,16 @@ const WKTField = ({
         autoComplete={"off"}
         label={arg.display_name}
         id={arg.display_name}
-        readOnly
         name={arg.name}
         defaultValue={arg.default}
-        //value={AOI}
+        value={AOI}
         onClick={handleClick}
         placeholder={"Click here to use the AOI drawing tool"}
       />
       {map && (
         <>
           <DrawMap
+            AOI={AOI}
             setAOI={setAOI}
             showMap={showMap}
             country={countries[selectedCountry]}

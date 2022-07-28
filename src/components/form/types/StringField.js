@@ -10,6 +10,8 @@ const StringField = ({ arg, setValue, error, runValidation }) => {
     if (arg.default) setValue(arg.name, arg.default);
   }, [arg.default]);
 
+  
+
   let isOptions = arg.valid_values ? true : false;
 
   const options = arg.valid_values.map((value) => {
