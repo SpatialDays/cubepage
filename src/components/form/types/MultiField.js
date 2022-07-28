@@ -11,7 +11,7 @@ const MultiField = ({ arg, setValue, error, runValidation }) => {
       setValue(arg.name, [arg.default]);
       setSelected([{ label: arg.default, value: arg.default }]);
     }
-  }, []);
+  }, [arg.default]);
 
   const handleChange = (name, value) => {
     setValue(

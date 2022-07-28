@@ -5,8 +5,9 @@ import { useEffect } from "react";
 
 const IntField = ({ arg, error, setValue}) => {
   useEffect(() => {
-    if (arg.default) setValue(arg.name, arg.default.toString())
-  }, [])
+    if (arg.default) setValue(arg.name, arg.default)
+  }, [arg.default])
+
   return (
     <>
       <Label text={arg.display_name} tooltip={arg.description} />
@@ -20,6 +21,9 @@ const IntField = ({ arg, error, setValue}) => {
         handleClick={(e) => setValue(arg.name, e.target.value)}
         defaultValue={arg.default}
         placeholder={arg.display_name}
+
+        // set default value
+
       />
 
 

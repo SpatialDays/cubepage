@@ -136,18 +136,22 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
                   <div className="test-item-bottom">
                     {h.history.length > 0 ? (
                       h.history.map((h2, i) => {
+                        
                         let data = JSON.parse(h2.data);
                         let dataKeys = Object.keys(data.args);
 
                         // Create a string of keys and values
-                        let prettyData = dataKeys
-                          .map((key) => {
-                            // If key doesnt start with aoi
-                            if (!key.startsWith("aoi")) {
-                              return `${key}: ${data.args[key]}`;
-                            }
-                          })
-                          .join("<br/><br/>");
+                        let prettyData = dataKeys.map((key) => {
+                          // If key doesnt start with aoi
+                          if (!key.startsWith("aoi")) {
+                            return `${key}: ${data.args[key]}`;
+                          }
+                        });
+
+                        // remove empty values
+                        prettyData = prettyData.filter(Boolean);
+
+                        prettyData = prettyData.join("<br/><br/>");
 
                         return (
                           <div
@@ -172,7 +176,18 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
                                   data-tip={prettyData}
                                   htmlFor={{ text: "tooltip" }}
                                 >
-                                  <small>View</small>
+                                  <small
+                                    onClick={() => {
+                                      const url = `/tasks/${h2.task}?taskid=${h2.taskid}`;
+                                      window.open(url, "_blank");
+                                    }}
+                                    // cursor pointer
+                                    style={{
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    View
+                                  </small>
                                 </label>
                               </div>
                             </div>

@@ -1,8 +1,13 @@
 import Label from "../../generic/Label";
 import Field from "../Field";
 import ErrorField from "../../generic/ErrorField";
+import { useEffect } from "react";
 
 const FloatField = ({ arg, error, setValue }) => {
+  useEffect(() => {
+    if (arg.default) setValue(arg.name, arg.default.toString());
+  }, [arg.default]);
+
   const handleChange = (name, value) => {
     // Check if value is a number
     if (isNaN(value)) {

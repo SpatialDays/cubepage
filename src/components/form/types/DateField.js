@@ -16,8 +16,13 @@ const DateField = ({ arg, showYearPicker, setValue, error, runValidation }) => {
     if (arg.default) {
       setValue(arg.name, arg.default);
       setStartDate(new Date(arg.default));
-    } else setValue(arg.name, startDate.toISOString().split("T")[0]);
-  }, []);
+      // force rerender
+      runValidation();
+    } else {
+      setValue(arg.name, startDate.toISOString().split("T")[0]);
+
+    }
+  }, [arg.default]);
 
   const handleChange = (name, value) => {
     setValue(name, value.toISOString().split("T")[0], { shouldValidate: true });
@@ -34,6 +39,7 @@ const DateField = ({ arg, showYearPicker, setValue, error, runValidation }) => {
         selected={startDate}
         showYearPicker={showYearPicker ? true : false}
         placeholder={arg.display_name}
+        dateFormat="dd/MM/yyyy"
       />
       <ErrorField error={error} />
     </>

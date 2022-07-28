@@ -141,7 +141,7 @@ const Queue = () => {
             </div>
           )}
           {results && results.length ? (
-            <div class="queue results-table">
+            <div className="queue results-table">
               <div className="results-row-container">
                 {[...results].reverse().map((result, i) => {
                   if (result.status != "complete") {
@@ -224,7 +224,7 @@ const Queue = () => {
             </div>
 
             {results && results.length > 0 && (
-              <div class="queue results-table">
+              <div className="queue results-table">
                 <div className="results-row-container">
                   {[...results].reverse().map((result, i) => {
                     if (result.status != "failed") {

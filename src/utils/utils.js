@@ -78,6 +78,23 @@ export const fetchTaskNames = async (setTaskNames) => {
     });
 };
 
+export const fetchTaskHistory = async (taskID, setFetchedTask) => {
+  const axios = require("axios");
+  const headers = {
+    "Content-Type": "application/json; charset=utf-8;",
+    Authorization: "Bearer " + window.localStorage.getItem("cubetoken"),
+  };
+  const response = await axios({
+    method: "get",
+    url: process.env.REACT_APP_PORTAL_URL + "/task/" + taskID + "/history",
+    headers: headers,
+  });
+
+  const parsedResponse = JSON.parse(response.data);
+  
+  setFetchedTask(parsedResponse);
+};
+
 export const checkTask = async (taskid, setActiveTasks) => {
   const axios = require("axios");
   const headers = {
@@ -137,10 +154,12 @@ export const fetchHistory = async (task, history, setHistory) => {
       // Loop through the history and add to the history result where task matches
       let newHistory = history.map((item) => {
         if (item.task === task) {
-          return { ...item, history: response.data };
+          return { ...item, history: response.data.reverse() };
         }
         return item;
       });
+
+
 
       setHistory(newHistory);
       return newHistory;
@@ -183,7 +202,7 @@ export const downloadResult = async (
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "result.zip");
+      link.setAttribute("download", `${taskId}.zip`);
       document.body.appendChild(link);
       link.click();
     })
@@ -240,7 +259,7 @@ export const submitTasks = async (task, data, setLoading, setErrorMessage) => {
     });
 };
 
-export const runExampleParams = async (task, ) => {
+export const runExampleParams = async (task) => {
   const axios = require("axios");
 
   let data = {};
@@ -266,8 +285,6 @@ export const runExampleParams = async (task, ) => {
           return e.Error;
         });
       }
-
-      console.log(errorMsg);
     });
 };
 
