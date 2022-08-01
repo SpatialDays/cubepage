@@ -55,7 +55,6 @@ const DrawMap = ({ AOI, setAOI, showMap, country }) => {
   };
 
   const handleDraw = (e) => {
-    console.log("Handing draw");
     // wait 50 ms
     setTimeout(() => {
       setRectangleBounds(null);
@@ -77,8 +76,6 @@ const DrawMap = ({ AOI, setAOI, showMap, country }) => {
       output.push(ring);
     });
 
-    console.log(output);
-
     return output;
   };
 
@@ -96,7 +93,6 @@ const DrawMap = ({ AOI, setAOI, showMap, country }) => {
 
     // Check if there is already an AOI
     if (AOI) {
-      console.log("Handling mount");
       const aoi = wktToArray(AOI);
       setRectangleBounds(aoi);
     }

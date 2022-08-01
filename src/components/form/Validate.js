@@ -1,6 +1,10 @@
-import { convertDateToString } from "../../utils/utils";
+import {
+  convertDateToString,
+  checkDataExists,
+  checkKeysValues,
+} from "../../utils/utils";
 
-const Validate = (values, settings, taskName) => {
+const Validate = async (values, settings, taskName) => {
   var errors = {};
   var parsedSettings = {};
 
@@ -107,6 +111,60 @@ const Validate = (values, settings, taskName) => {
       }
     }
   });
+
+  // If user has values for AOI and date ranges, then make a request to see if there is data there
+  if (
+    checkKeysValues(values, [
+      "aoi_wkt",
+      "baseline_time_start",
+      "baseline_time_end",
+      "baseline_platform",
+    ])
+  ) {
+    const aoi = values["aoi_wkt"];
+    const start = values["baseline_time_start"];
+    const end = values["baseline_time_end"];
+    const platform = values["baseline_platform"];
+
+    let dataExists = await checkDataExists(aoi, platform, start, end);
+    if (dataExists.valid_datasets) {
+      console.log("Data exists for baseline");
+    } else {
+      console.log("Data does not exist for baseline");
+      // set an error
+      errors["baseline_time_start"] = "No data exists for this time range";
+      errors["baseline_time_end"] = "No data exists for this time range";
+    }
+  }
+
+  if (
+    checkKeysValues(values, [
+      "aoi_wkt",
+      "analysis_time_start",
+      "analysis_time_end",
+      "analysis_platform",
+    ])
+  ) {
+    const aoi = values["aoi_wkt"];
+    const start = values["analysis_time_start"];
+    const end = values["analysis_time_end"];
+    const platform = values["analysis_platform"];
+
+    let dataExists = await checkDataExists(aoi, platform, start, end);
+    if (dataExists.valid_datasets) {
+      console.log("Data exists for analysis");
+    } else {
+      console.log("Data does not exist for analysis");
+      // set an error
+      errors["analysis_time_start"] = "No data exists for this time range";
+      errors["analysis_time_end"] = "No data exists for this time range";
+    }
+  }
+
+
+
+  console.log(values)
+  
   return errors;
 };
 export default Validate;

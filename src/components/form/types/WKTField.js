@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Field from "../Field";
 import DrawMap from "../../generic/DrawMap";
 import Label from "../../generic/Label";
+import ReactTooltip from "react-tooltip";
+
 import ErrorField from "../../generic/ErrorField";
 import axios from "axios";
 
@@ -111,19 +113,32 @@ const WKTField = ({
           </div>
         ))}
       </div>
-      <Label text={arg.display_name} tooltip={arg.description} />
-      <p
-        onClick={(e) => {
-          // Paste AOI from clipboard
-          navigator.clipboard.readText().then((text) => {
-            setAOI(text);
-          });
-        }}
-        // cursor style
-        style={{ cursor: "pointer" }}
-      >
-        Paste AOI
-      </p>
+      <div className="aoi-label-container">
+        <Label text={arg.display_name} tooltip={arg.description} />
+        <p
+          onClick={(e) => {
+            // Paste AOI from clipboard
+            navigator.clipboard.readText().then((text) => {
+              // if text starts with POLYGON
+              if (text.startsWith("POLYGON")) {
+                setAOI(text);
+              } else {
+                // alert that text is not a valid AOI
+                alert(`${text} is not a valid AOI`);
+              }
+            });
+          }}
+          // cursor style
+          style={{ cursor: "pointer" }}
+        >
+          <ReactTooltip />
+          <label data-tip={"Paste"} htmlFor="paste">
+            {" "}
+            <img src="/icons/paste.png" alt="Paste" className="task-icon" />
+          </label>
+        </p>
+      </div>
+
       <Field
         autoComplete={"off"}
         label={arg.display_name}

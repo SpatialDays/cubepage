@@ -220,6 +220,15 @@ input[type="radio"]:checked:after {
 /* Task */
 
 .task {
+  &-icon {
+    width: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:1em;
+    cursor: pointer;
+  }
+
   &-header {
     width: 100%;
 
@@ -274,6 +283,11 @@ input[type="radio"]:checked:after {
       background-color: #26572b;
     }
   }
+}
+
+.aoi-label-container {
+  display:flex;
+  align-items:center;
 }
 
 // Submission
