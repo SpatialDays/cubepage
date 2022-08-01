@@ -59,8 +59,6 @@ const TaskForm = ({
 
   // if not hasTaskID then set the value to all the args
   if (hasTaskID && fetchedTask) {
-
-
     for (const arg of task.args) {
       arg.default = fetchedTask.args[arg.name];
     }
