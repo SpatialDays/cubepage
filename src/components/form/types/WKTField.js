@@ -112,6 +112,18 @@ const WKTField = ({
         ))}
       </div>
       <Label text={arg.display_name} tooltip={arg.description} />
+      <p
+        onClick={(e) => {
+          // Paste AOI from clipboard
+          navigator.clipboard.readText().then((text) => {
+            setAOI(text);
+          });
+        }}
+        // cursor style
+        style={{ cursor: "pointer" }}
+      >
+        Paste AOI
+      </p>
       <Field
         autoComplete={"off"}
         label={arg.display_name}
