@@ -38,7 +38,13 @@ function App() {
   useEffect(() => {
     const FIVE_MINUTES = 1000 * 60 * 5;
     const interval = setInterval(() => {
-      if (window.localStorage.getItem("cubetoken")) refreshToken();
+      if (window.localStorage.getItem("cubetoken")) {
+        refreshToken();
+      } else {
+        if (window.location.pathname !== "/login") {
+          window.location.href = "/login";
+        }
+      }
     }, FIVE_MINUTES);
     return () => clearInterval(interval);
   }, []);

@@ -7,6 +7,7 @@ import {
   findElementInListOfObjects,
   fetchTaskHistory,
 } from "../utils/utils";
+import { refreshToken } from "../utils/token";
 import Back from "../components/generic/Back";
 
 const Task = ({
@@ -16,6 +17,8 @@ const Task = ({
   setSettings,
   availableProjects,
 }) => {
+  refreshToken();
+
   const { taskName } = useParams();
   const [selectedTask, setSelectedTask] = useState(null);
   const [fetchedTask, setFetchedTask] = useState(null);
@@ -25,8 +28,10 @@ const Task = ({
     const params = new URLSearchParams(paramsString);
     const taskid = params.get("taskid");
 
-    // fetch the params used in the task
-    await fetchTaskHistory(taskid, setFetchedTask);
+    if (taskid && taskid.length > 0) {
+      // fetch the params used in the task
+      await fetchTaskHistory(taskid, setFetchedTask);
+    }
   }, []);
 
   // Only look for tasks if they do not already exist in the state. This should only be called if there is a direct link to the task.

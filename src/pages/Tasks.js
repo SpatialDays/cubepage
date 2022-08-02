@@ -4,8 +4,11 @@ import Card from "../components/card/Card";
 import "../assets/styles/card.scss";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@mui/material";
+import { refreshToken } from "../utils/token";
 
 const Tasks = ({ tasks, setTasks, setSettings }) => {
+  refreshToken();
+
   const history = useHistory();
 
   useEffect(() => {
@@ -63,7 +66,8 @@ const Tasks = ({ tasks, setTasks, setSettings }) => {
             download link.
             <br />
             <br />
-            The queries that can currently be launched as tasks are listed below:
+            The queries that can currently be launched as tasks are listed
+            below:
           </small>
         </div>
       </div>
