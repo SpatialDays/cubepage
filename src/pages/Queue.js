@@ -72,9 +72,11 @@ const Queue = () => {
               <input
                 type="button"
                 value="Refresh"
-                onClick={() => {
-                  fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
-                  fetchResults(setResults);
+                onClick={async () => {
+                  await fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
+                  await new Promise((resolve) => setTimeout(resolve, 300));
+                  await fetchResults(setResults);
+                  setShowErrors(!showErrors);
                 }}
               />
             </div>

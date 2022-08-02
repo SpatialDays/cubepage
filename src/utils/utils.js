@@ -91,7 +91,7 @@ export const fetchTaskHistory = async (taskID, setFetchedTask) => {
   });
 
   const parsedResponse = JSON.parse(response.data);
-  
+
   setFetchedTask(parsedResponse);
 };
 
@@ -115,6 +115,28 @@ export const checkTask = async (taskid, setActiveTasks) => {
         window.location.href = "/login";
       }
     });
+};
+
+export const checkDataExists = async (aoi, platform, startDate, endDate) => {
+  const axios = require("axios");
+  const headers = {
+    "Content-Type": "application/json; charset=utf-8;",
+    Authorization: "Bearer " + window.localStorage.getItem("cubetoken"),
+  };
+
+  const response = await axios({
+    method: "post",
+    url: process.env.REACT_APP_PORTAL_URL + "/check-data-availability",
+    headers: headers,
+    data: {
+      aoi: aoi,
+      platform: platform,
+      startDate: startDate,
+      endDate: endDate,
+    },
+  });
+
+  return response.data;
 };
 
 export const fetchResults = async (setResults) => {
@@ -158,8 +180,6 @@ export const fetchHistory = async (task, history, setHistory) => {
         }
         return item;
       });
-
-
 
       setHistory(newHistory);
       return newHistory;
@@ -296,4 +316,17 @@ export const findElementInListOfObjects = (array, title, param) => {
   return array.find((element) => {
     return element[param] === title;
   });
+};
+
+export const checkKeysValues = (obj, keys) => {
+  // Check that keys exist and that the values are not empty
+  for (let key of keys) {
+    if (!obj.hasOwnProperty(key)) {
+      return false;
+    }
+    if (obj[key] === "") {
+      return false;
+    }
+  }
+  return true;
 };
