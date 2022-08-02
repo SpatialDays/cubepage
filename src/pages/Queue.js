@@ -6,11 +6,14 @@ import {
   fetchResults,
   downloadResult,
 } from "../utils/utils";
+import { refreshToken } from "../utils/token";
 import { CircularProgress } from "@mui/material";
 
 import "../assets/styles/queue.scss";
 
 const Queue = () => {
+  refreshToken();
+
   const [taskNames, setTaskNames] = useState([]);
   const [activeTasks, setActiveTasks] = useState([]);
   const [loadingActiveTasks, setLoadingActiveTasks] = useState(false);
@@ -200,7 +203,7 @@ const Queue = () => {
             <input
               type="button"
               className="task-submit"
-              value={`${showErrors ? 'Hide' : 'Show'} Errors`}
+              value={`${showErrors ? "Hide" : "Show"} Errors`}
               onClick={() => {
                 setShowErrors(!showErrors);
               }}

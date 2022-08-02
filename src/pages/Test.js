@@ -4,8 +4,11 @@ import ReactTooltip from "react-tooltip";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import PendingIcon from "@mui/icons-material/Pending";
+import { refreshToken } from "../utils/token";
 
 const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
+  refreshToken();
+
   useEffect(() => {
     if (tasks && !history.length) {
       tasks.forEach((task) => {
@@ -136,7 +139,6 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
                   <div className="test-item-bottom">
                     {h.history.length > 0 ? (
                       h.history.map((h2, i) => {
-                        
                         let data = JSON.parse(h2.data);
                         let dataKeys = Object.keys(data.args);
 
