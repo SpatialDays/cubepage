@@ -161,10 +161,6 @@ const Validate = async (values, settings, taskName) => {
     }
   }
 
-
-
-  console.log(values)
-  
   return errors;
 };
 export default Validate;
