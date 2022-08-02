@@ -1,6 +1,7 @@
 import Login from "./pages/Login";
 import Task from "./pages/Task";
 import Tasks from "./pages/Tasks";
+import Docs from "./pages/Docs";
 import Submission from "./pages/Submission";
 import Queue from "./pages/Queue";
 import Test from "./pages/Test";
@@ -81,13 +82,24 @@ function App() {
             />
           )}
         />
+        <Route
+          exact
+          path="/docs/:taskName"
+          component={() => <Docs tasks={tasks} />}
+        />
         <Route exact path="/queue" component={() => <Queue />} />
         <Route exact path="/submission" component={() => <Submission />} />
         <Route
           exact
           path="/test"
           component={() => (
-            <Test tasks={tasks} setTasks={setTasks} setSettings={setSettings} history={history} setHistory={setHistory}/>
+            <Test
+              tasks={tasks}
+              setTasks={setTasks}
+              setSettings={setSettings}
+              history={history}
+              setHistory={setHistory}
+            />
           )}
         />
         <Route render={() => <Redirect to={{ pathname: "/" }} />} />
