@@ -10,7 +10,7 @@ const MultiField = ({ arg, setValue, error, runValidation }) => {
     if (arg.default) {
       setValue(
         arg.name,
-        arg.default.map((item) => item.value)
+        arg.default.map((item) => item)
       );
 
       let selectedArray = [];
