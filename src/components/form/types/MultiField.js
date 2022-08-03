@@ -8,8 +8,13 @@ const MultiField = ({ arg, setValue, error, runValidation }) => {
 
   useEffect(() => {
     if (arg.default) {
-      setValue(arg.name, [arg.default]);
-      setSelected([{ label: arg.default, value: arg.default }]);
+      let selectedArray = [];
+      arg.default.forEach((item) => {
+        selectedArray.push({ label: item, value: item });
+      });
+      setSelected(selectedArray);
+      setValue(arg.name, selectedArray);
+
     }
   }, [arg.default]);
 
@@ -22,7 +27,7 @@ const MultiField = ({ arg, setValue, error, runValidation }) => {
       { shouldValidate: true }
     );
     setSelected(value);
-    runValidation()
+    runValidation();
   };
 
   const options = arg.valid_values.map((value) => {
