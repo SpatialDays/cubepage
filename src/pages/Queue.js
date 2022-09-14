@@ -28,6 +28,14 @@ const Queue = () => {
     fetchResults(setResults);
   }, []);
 
+  // Refresh active tasks every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <div className="content">
@@ -79,7 +87,6 @@ const Queue = () => {
                   await fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
                   await new Promise((resolve) => setTimeout(resolve, 300));
                   await fetchResults(setResults);
-                  setShowErrors(!showErrors);
                 }}
               />
             </div>
@@ -199,7 +206,18 @@ const Queue = () => {
           )}
         </div>
         <div className="error-bar">
+          <div className="error-text queue__button show__button">
+
+          </div>
           <div className="error-text queue__button">
+          <input
+              type="button"
+              className="task-submit"
+              value={`Show All Results`}
+              onClick={() => {
+                fetchResults(setResults, 999);
+              }}
+            />
             <input
               type="button"
               className="task-submit"

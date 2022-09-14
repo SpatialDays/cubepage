@@ -139,7 +139,7 @@ export const checkDataExists = async (aoi, platform, startDate, endDate) => {
   return response.data;
 };
 
-export const fetchResults = async (setResults) => {
+export const fetchResults = async (setResults, numResults=20) => {
   const axios = require("axios");
   const headers = {
     "Content-Type": "application/json; charset=utf-8;",
@@ -151,7 +151,8 @@ export const fetchResults = async (setResults) => {
     headers: headers,
   })
     .then(function (response) {
-      setResults(response.data);
+      setResults(response.data.slice(0, numResults));
+      //setResults(response.data);
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
@@ -251,7 +252,7 @@ export const submitTasks = async (task, data, setLoading, setErrorMessage) => {
       token: window.localStorage.getItem("cubetoken"),
     })
     .then(() => {
-      window.location.href = "/submission";
+      window.location.href = "/queue";
       setLoading(false);
     })
     .catch((error) => {

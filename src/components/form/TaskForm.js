@@ -62,7 +62,6 @@ const TaskForm = ({
     for (const arg of task.args) {
       arg.default = fetchedTask.args[arg.name];
     }
-
   }
 
   const errors = use("errors");
