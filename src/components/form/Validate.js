@@ -5,7 +5,7 @@ import {
 } from "../../utils/utils";
 
 const Validate = async (values, settings, taskName) => {
-  console.log(`Validating! `);
+  console.log(`Validating! `, values);
   var errors = {};
   var parsedSettings = {};
 
@@ -127,7 +127,7 @@ const Validate = async (values, settings, taskName) => {
     const end = values["baseline_time_end"];
     const platform = values["baseline_platform"];
 
-    console.log(`Platform is of type ${typeof platform}   ${platform}`);
+
 
     // if platform is string
     if (typeof platform === "string") {
@@ -159,6 +159,53 @@ const Validate = async (values, settings, taskName) => {
     }
   }
 
+
+  if (
+    checkKeysValues(values, [
+      "aoi_wkt",
+      "time_start",
+      "time_end",
+      "platform",
+    ])
+  ) {
+    const aoi = values["aoi_wkt"];
+    const start = values["time_start"];
+    const end = values["time_end"];
+    const platform = values["platform"];
+
+
+
+    // if platform is string
+    if (typeof platform === "string") {
+      let dataExists = await checkDataExists(aoi, platform, start, end);
+      if (dataExists.valid_datasets) {
+        console.log("Data exists for baseline");
+      } else {
+        console.log("Data does not exist for baseline");
+        // set an error
+        errors["time_start"] = "No data exists for this time range";
+        errors["time_end"] = "No data exists for this time range";
+      }
+    }
+
+    // if platform is array
+    if (Array.isArray(platform)) {
+      console.log(`Array!`)
+      // Loop through each platform and check if data exists
+      for (let i = 0; i < platform.length; i++) {
+        let dataExists = await checkDataExists(aoi, platform[i], start, end);
+        if (dataExists.valid_datasets) {
+          console.log("Data exists for baseline");
+        } else {
+          console.log("Data does not exist for baseline");
+          // set an error
+          errors["baseline_time_start"] = "No data exists for this time range";
+          errors["baseline_time_end"] = "No data exists for this time range";
+        }
+      }
+    }
+  }
+
   if (
     checkKeysValues(values, [
       "aoi_wkt",
@@ -167,7 +214,6 @@ const Validate = async (values, settings, taskName) => {
       "analysis_platform",
     ])
   ) {
-    console.log("# 3");
     const aoi = values["aoi_wkt"];
     const start = values["analysis_time_start"];
     const end = values["analysis_time_end"];

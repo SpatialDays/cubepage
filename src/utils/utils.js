@@ -151,7 +151,11 @@ export const fetchResults = async (setResults, numResults=20) => {
     headers: headers,
   })
     .then(function (response) {
-      setResults(response.data.slice(0, numResults));
+      
+      // only pick last numResults results
+      const results = response.data.slice(Math.max(response.data.length - numResults, 0))
+      setResults(results);
+      //setResults(response.data.slice(0, numResults));
       //setResults(response.data);
     })
     .catch(function (error) {
