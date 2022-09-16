@@ -31,7 +31,9 @@ const Queue = () => {
   // Refresh active tasks every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
+      fetchTaskNames(setTaskNames);
       fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
+      fetchResults(setResults);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -206,11 +208,9 @@ const Queue = () => {
           )}
         </div>
         <div className="error-bar">
-          <div className="error-text queue__button show__button">
-
-          </div>
+          <div className="error-text queue__button show__button"></div>
           <div className="error-text queue__button">
-          <input
+            <input
               type="button"
               className="task-submit"
               value={`Show All Results`}

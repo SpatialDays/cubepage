@@ -139,7 +139,7 @@ export const checkDataExists = async (aoi, platform, startDate, endDate) => {
   return response.data;
 };
 
-export const fetchResults = async (setResults, numResults=20) => {
+export const fetchResults = async (setResults, numResults = 20) => {
   const axios = require("axios");
   const headers = {
     "Content-Type": "application/json; charset=utf-8;",
@@ -151,12 +151,11 @@ export const fetchResults = async (setResults, numResults=20) => {
     headers: headers,
   })
     .then(function (response) {
-      
-      // only pick last numResults results
-      const results = response.data.slice(Math.max(response.data.length - numResults, 0))
+      console.log(response.data)
+      const results = response.data.slice(
+        Math.max(response.data.length - numResults, 0)
+      );
       setResults(results);
-      //setResults(response.data.slice(0, numResults));
-      //setResults(response.data);
     })
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
