@@ -1,4 +1,4 @@
-import { useForm } from "react-cool-form";
+import { useForm, useFormState } from "react-cool-form";
 import Validate from "./Validate";
 
 import StringField from "./types/StringField";
@@ -36,9 +36,12 @@ const TaskForm = ({
 
   const { form, use, setValue, runValidation, setError, getState, submit } =
     useForm({
+      id: "task-form",
       defaultValues,
-      validate: (values) => {
-        return Validate(values, settings, task.name);
+      validate: async (values) => {
+        const errors = await Validate(values, settings, task.name);
+        console.log(`Errors are: `, errors);
+        return errors;
       },
       onSubmit: (values) => {
         Object.keys(values).forEach((value) => {
@@ -64,17 +67,29 @@ const TaskForm = ({
     }
   }
 
+  const FieldMessage = (name) => {
+    // Supports single-value-pick, array-pick, and object-pick data formats
+    const [error, value] = useFormState(["errors." + name, "values." + name], {
+      formId: "task-form",
+    });
+
+    return <p>{error}</p>;
+  };
+
   const errors = use("errors");
 
   const createTaskField = (arg) => {
     if (arg.type === "str") {
       return (
-        <StringField
-          arg={arg}
-          setValue={setValue}
-          error={errors[arg.name]}
-          runValidation={runValidation}
-        />
+        <>
+          <StringField
+            arg={arg}
+            setValue={setValue}
+            error={errors[arg.name]}
+            runValidation={runValidation}
+          />
+          <FieldMessage name={arg.name} />
+        </>
       );
     } else if (arg.type === "wkt") {
       return (
@@ -96,14 +111,21 @@ const TaskForm = ({
         <FloatField arg={arg} setValue={setValue} error={errors[arg.name]} />
       );
     } else if (arg.type === "date") {
-
       return (
-        <DateField
-          arg={arg}
-          setValue={setValue}
-          error={errors[arg.name]}
-          runValidation={runValidation}
-        />
+        <>
+          <DateField
+            arg={arg}
+            setValue={setValue}
+            error={errors[arg.name]}
+            runValidation={runValidation}
+            onChange={(e) => {
+              // force re-render and run validation
+              setValue(arg.name, e.target.value, { shouldValidate: true });
+              runValidation();
+            }}
+          />
+          <FieldMessage name={arg.name} />
+        </>
       );
     } else if (arg.type === "year") {
       return (

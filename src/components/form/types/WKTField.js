@@ -49,8 +49,8 @@ const WKTField = ({
   };
 
   useEffect(() => {
-    runValidation();
     setValue(arg.name, AOI);
+    runValidation();
   }, [AOI, setValue, runValidation, arg.name]);
 
   useEffect(() => {

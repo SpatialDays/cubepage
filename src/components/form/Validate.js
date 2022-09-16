@@ -5,7 +5,6 @@ import {
 } from "../../utils/utils";
 
 const Validate = async (values, settings, taskName) => {
-  console.log(`Validating! `, values);
   var errors = {};
   var parsedSettings = {};
 
@@ -93,10 +92,10 @@ const Validate = async (values, settings, taskName) => {
   // Check if the values are within the bounds
   validatedRanges.forEach((range) => {
     if (
-      values[range.id] <= range.minBound ||
-      values[range.id] >= range.maxBound ||
-      new Date(values[range.id]) <= range.minBound ||
-      new Date(values[range.id]) >= range.maxBound
+      values[range.id] < range.minBound ||
+      values[range.id] > range.maxBound ||
+      new Date(values[range.id]) < range.minBound ||
+      new Date(values[range.id]) > range.maxBound
     ) {
       if (values[range.id]) {
         if (range.type === "date") {
@@ -123,13 +122,16 @@ const Validate = async (values, settings, taskName) => {
       // if platform is string
       if (typeof platform === "string") {
         let dataExists = await checkDataExists(aoi, platform, start, end);
+        console.log(dataExists);
         if (dataExists.valid_datasets) {
-          console.log("Data exists for baseline");
         } else {
-          console.log("Data does not exist for baseline");
           // set an error
+          if (!errors[keys[1]]) {
           errors[keys[1]] = "No data exists for this time and area range";
-          errors[keys[2]] = "No data exists for this time and area range";
+          }
+          if (!errors[keys[2]]) {
+            errors[keys[2]] = "No data exists for this time and area range";
+          }
         }
       }
 
@@ -139,9 +141,7 @@ const Validate = async (values, settings, taskName) => {
         for (let i = 0; i < platform.length; i++) {
           let dataExists = await checkDataExists(aoi, platform[i], start, end);
           if (dataExists.valid_datasets) {
-            console.log("Data exists for baseline");
           } else {
-            console.log("Data does not exist for baseline");
             // set an error
             errors[keys[1]] = "No data exists for this time and area range";
             errors[keys[2]] = "No data exists for this time and area range";

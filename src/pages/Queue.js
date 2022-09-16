@@ -82,7 +82,7 @@ const Queue = () => {
             </div>
           ) : (
             <div className="queue__button">
-              <input
+              {/* <input
                 type="button"
                 value="Refresh"
                 onClick={async () => {
@@ -90,7 +90,7 @@ const Queue = () => {
                   await new Promise((resolve) => setTimeout(resolve, 300));
                   await fetchResults(setResults);
                 }}
-              />
+              /> */}
             </div>
           )}
         </div>
