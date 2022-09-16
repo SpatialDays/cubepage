@@ -64,7 +64,7 @@ const Validate = async (values, settings, taskName) => {
           minBound,
           maxBound,
         });
-      else errors[setting] = "Impossible bounds";
+      else errors[setting] = "Sensor ranges are incompatible.";
     }
     // Must be Date
     if (typeof minValues[0] === "string") {
@@ -87,16 +87,16 @@ const Validate = async (values, settings, taskName) => {
       }
       if (minBound < maxBound)
         validatedRanges.push({ id: setting, type: "date", minBound, maxBound });
-      else errors[setting] = "Impossible bounds";
+      else errors[setting] = "Sensor ranges are incompatible.";
     }
   });
   // Check if the values are within the bounds
   validatedRanges.forEach((range) => {
     if (
-      values[range.id] < range.minBound ||
-      values[range.id] > range.maxBound ||
-      new Date(values[range.id]) < range.minBound ||
-      new Date(values[range.id]) > range.maxBound
+      values[range.id] <= range.minBound ||
+      values[range.id] >= range.maxBound ||
+      new Date(values[range.id]) <= range.minBound ||
+      new Date(values[range.id]) >= range.maxBound
     ) {
       if (values[range.id]) {
         if (range.type === "date") {
@@ -113,122 +113,75 @@ const Validate = async (values, settings, taskName) => {
     }
   });
 
-  // If user has values for AOI and date ranges, then make a request to see if there is data there
-  if (
-    checkKeysValues(values, [
+  const checkData = async (values, keys, errors) => {
+    if (checkKeysValues(values, keys)) {
+      const aoi = values[keys[0]];
+      const start = values[keys[1]];
+      const end = values[keys[2]];
+      const platform = values[keys[3]];
+
+      // if platform is string
+      if (typeof platform === "string") {
+        let dataExists = await checkDataExists(aoi, platform, start, end);
+        if (dataExists.valid_datasets) {
+          console.log("Data exists for baseline");
+        } else {
+          console.log("Data does not exist for baseline");
+          // set an error
+          errors[keys[1]] = "No data exists for this time and area range";
+          errors[keys[2]] = "No data exists for this time and area range";
+        }
+      }
+
+      // if platform is array
+      if (Array.isArray(platform)) {
+        // Loop through each platform and check if data exists
+        for (let i = 0; i < platform.length; i++) {
+          let dataExists = await checkDataExists(aoi, platform[i], start, end);
+          if (dataExists.valid_datasets) {
+            console.log("Data exists for baseline");
+          } else {
+            console.log("Data does not exist for baseline");
+            // set an error
+            errors[keys[1]] = "No data exists for this time and area range";
+            errors[keys[2]] = "No data exists for this time and area range";
+          }
+        }
+      }
+    }
+  };
+
+  await checkData(
+    values,
+    ["aoi_wkt", "time_start", "time_end", "platform"],
+    errors
+  );
+  await checkData(
+    values,
+    [
       "aoi_wkt",
       "baseline_time_start",
       "baseline_time_end",
       "baseline_platform",
-    ])
-  ) {
-    const aoi = values["aoi_wkt"];
-    const start = values["baseline_time_start"];
-    const end = values["baseline_time_end"];
-    const platform = values["baseline_platform"];
-
-
-
-    // if platform is string
-    if (typeof platform === "string") {
-      let dataExists = await checkDataExists(aoi, platform, start, end);
-      if (dataExists.valid_datasets) {
-        console.log("Data exists for baseline");
-      } else {
-        console.log("Data does not exist for baseline");
-        // set an error
-        errors["baseline_time_start"] = "No data exists for this time range";
-        errors["baseline_time_end"] = "No data exists for this time range";
-      }
-    }
-
-    // if platform is array
-    if (Array.isArray(platform)) {
-      // Loop through each platform and check if data exists
-      for (let i = 0; i < platform.length; i++) {
-        let dataExists = await checkDataExists(aoi, platform[i], start, end);
-        if (dataExists.valid_datasets) {
-          console.log("Data exists for baseline");
-        } else {
-          console.log("Data does not exist for baseline");
-          // set an error
-          errors["baseline_time_start"] = "No data exists for this time range";
-          errors["baseline_time_end"] = "No data exists for this time range";
-        }
-      }
-    }
-  }
-
-
-  if (
-    checkKeysValues(values, [
-      "aoi_wkt",
-      "time_start",
-      "time_end",
-      "platform",
-    ])
-  ) {
-    const aoi = values["aoi_wkt"];
-    const start = values["time_start"];
-    const end = values["time_end"];
-    const platform = values["platform"];
-
-
-
-    // if platform is string
-    if (typeof platform === "string") {
-      let dataExists = await checkDataExists(aoi, platform, start, end);
-      if (dataExists.valid_datasets) {
-        console.log("Data exists for baseline");
-      } else {
-        console.log("Data does not exist for baseline");
-        // set an error
-        errors["time_start"] = "No data exists for this time range";
-        errors["time_end"] = "No data exists for this time range";
-      }
-    }
-
-    // if platform is array
-    if (Array.isArray(platform)) {
-      console.log(`Array!`)
-      // Loop through each platform and check if data exists
-      for (let i = 0; i < platform.length; i++) {
-        let dataExists = await checkDataExists(aoi, platform[i], start, end);
-        if (dataExists.valid_datasets) {
-          console.log("Data exists for baseline");
-        } else {
-          console.log("Data does not exist for baseline");
-          // set an error
-          errors["baseline_time_start"] = "No data exists for this time range";
-          errors["baseline_time_end"] = "No data exists for this time range";
-        }
-      }
-    }
-  }
-
-  if (
-    checkKeysValues(values, [
+    ],
+    errors
+  );
+  await checkData(
+    values,
+    [
       "aoi_wkt",
       "analysis_time_start",
       "analysis_time_end",
       "analysis_platform",
-    ])
-  ) {
-    const aoi = values["aoi_wkt"];
-    const start = values["analysis_time_start"];
-    const end = values["analysis_time_end"];
-    const platform = values["analysis_platform"];
+    ],
+    errors
+  );
+  await checkData(
+    values,
+    ["aoi_wkt", "baseline_time_start", "baseline_time_end", "platform"],
 
-    let dataExists = await checkDataExists(aoi, platform, start, end);
-    if (dataExists.valid_datasets) {
-      console.log("Data exists for analysis");
-    } else {
-      console.log("Data does not exist for analysis");
-      // set an error
-      errors["analysis_time_start"] = "No data exists for this time range";
-      errors["analysis_time_end"] = "No data exists for this time range";
-    }
-  }
+    errors
+  );
 
   return errors;
 };
