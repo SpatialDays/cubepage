@@ -167,8 +167,12 @@ const TaskForm = ({
           <div className="task-header__card-right">
             <div className="task-header__card-right-title">
               <h1>
-                <a target="_blank" rel="noreferrer" href={task.info_url}>
+                <a target="_blank" rel="noreferrer" href={"/docs/" + task.name}>
                   {task.display_name}
+                  <img src="../images/icons/info-button.png" 
+                    alt="info button"
+                    className="task-header__card-right-title-info"
+                  />
                 </a>
               </h1>
             </div>

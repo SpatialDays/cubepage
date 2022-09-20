@@ -258,6 +258,11 @@ input[type="radio"]:checked:after {
 
         &-title {
           margin-bottom: 1em;
+
+          &-info {
+            width: 20px;
+            margin-left:2%;
+          }
         }
 
         &-content {

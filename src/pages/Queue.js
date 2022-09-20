@@ -77,11 +77,9 @@ const Queue = () => {
           })}
 
           {loadingActiveTasks ? (
-            <div className="loading">
-              <CircularProgress />
-            </div>
+            <></>
           ) : (
-            <div className="queue__button">
+            <div className="">
               {/* <input
                 type="button"
                 value="Refresh"

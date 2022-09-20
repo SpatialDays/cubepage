@@ -5,12 +5,13 @@ import { docs } from "../constants/consts";
 
 const Docs = ({ tasks }) => {
   const { taskName } = useParams();
-
+  console.log(`taskName: ${taskName}`);
   return (
     <div className="content">
       <Back />
       <div className="docs-container">
         <div className="docs-content">
+       
           {docs[taskName] &&
             docs[taskName].map((doc, index) => (
               <div key={index} className={`docs-content__item`}>
@@ -26,7 +27,7 @@ const Docs = ({ tasks }) => {
                   >
                     <div className={`docs-paragraph-with-image__image `}>
                       <img
-                        src={`/docs/${taskName}/${doc.image}`}
+                        src={`/docs_files/${taskName}/${doc.image}`}
                         alt={doc.subheading}
                         className={`fit-${doc.imagefit}`}
                       />
@@ -93,7 +94,7 @@ const Docs = ({ tasks }) => {
                           className="docs-paragraph-with-multiple-images__image"
                         >
                           <img
-                            src={`/docs/${taskName}/${image.image}`}
+                            src={`/docs_files/${taskName}/${image.image}`}
                             alt={image.caption}
                           />
                           <p>{image.caption}</p>
@@ -122,7 +123,7 @@ const Docs = ({ tasks }) => {
 
                 {doc.type === "coming-soon" && (
                   <div className="docs-coming-soon">
-                    <img src="/docs/coming-soon.png" alt="coming-soon" />
+                    <img src="/docs_files/coming-soon.png" alt="coming-soon" />
                   </div>
                 )}
               </div>
