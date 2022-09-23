@@ -165,7 +165,7 @@ export const fetchResults = async (setResults, numResults = 20) => {
     });
 };
 
-export const fetchHistory = async (task, history, setHistory) => {
+export const fetchHistory = async (task, history, setHistory, numHistory=10) => {
   const axios = require("axios");
   const headers = {
     "Content-Type": "application/json; charset=utf-8;",
@@ -180,7 +180,7 @@ export const fetchHistory = async (task, history, setHistory) => {
       // Loop through the history and add to the history result where task matches
       let newHistory = history.map((item) => {
         if (item.task === task) {
-          return { ...item, history: response.data.reverse() };
+          return { ...item, history: response.data.reverse().slice(0, numHistory)};
         }
         return item;
       });

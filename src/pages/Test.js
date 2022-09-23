@@ -103,37 +103,72 @@ const Test = ({ tasks, setTasks, setSettings, history, setHistory }) => {
                   </div>
                 </div>
                 {h.showHistory && (
-                  <div className="test-item-bottom-row">
-                    <div className="test-item-bottom-col">
-                      <div className="test-item-bottom__title">
-                        <small>
-                          <b>Date Created</b>
-                        </small>
+                  <>
+                    {/* Dropdown for how many rows to show  */}
+                    <div className="test-item-bottom-row row-count">
+                      <div className="test-item-bottom-col row-count-col">
+                        <div className="test-item-bottom__title">
+                          <small>
+                            Rows : {"  "}
+                            <select
+                              className="test-item-bottom__select"
+                              onChange={(e) => {
+                                h.rows = e.target.value;
+                                fetchHistory(
+                                  h.task,
+                                  history,
+                                  setHistory,
+                                  h.rows
+                                );
+                              }}
+                              value={h.rows}
+                            >
+                              <option value="5">5</option>
+                              <option selected value="10">
+                                10
+                              </option>
+                              <option value="20">20</option>
+                              <option value="50">50</option>
+                              <option value="100">100</option>
+                              <option value="99999">All</option>
+                            </select>
+                          </small>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="test-item-bottom-col">
-                      <div className="test-item-bottom__title">
-                        <small>
-                          <b>Task ID</b>
-                        </small>
+                    </div>
+                    <div className="test-item-bottom-row">
+                      <div className="test-item-bottom-col">
+                        <div className="test-item-bottom__title">
+                          <small>
+                            <b>Date Created</b>
+                          </small>
+                        </div>
+                      </div>
+
+                      <div className="test-item-bottom-col">
+                        <div className="test-item-bottom__title">
+                          <small>
+                            <b>Task ID</b>
+                          </small>
+                        </div>
+                      </div>
+                      <div className="test-item-bottom-col__small">
+                        <div className="test-item-bottom__title">
+                          <small>
+                            <b>View</b>
+                          </small>
+                        </div>
+                      </div>
+                      <div className="test-item-bottom-col__small">
+                        <div className="test-item-bottom__title">
+                          <small>
+                            <b>Success</b>
+                          </small>
+                        </div>
                       </div>
                     </div>
-                    <div className="test-item-bottom-col__small">
-                      <div className="test-item-bottom__title">
-                        <small>
-                          <b>View</b>
-                        </small>
-                      </div>
-                    </div>
-                    <div className="test-item-bottom-col__small">
-                      <div className="test-item-bottom__title">
-                        <small>
-                          <b>Success</b>
-                        </small>
-                      </div>
-                    </div>
-                  </div>
+                  </>
                 )}
                 {h.showHistory && (
                   <div className="test-item-bottom">

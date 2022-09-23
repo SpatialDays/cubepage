@@ -283,7 +283,6 @@ input[type="radio"]:checked:after {
     color: white;
     font-weight: 900;
     -webkit-appearance: none;
-    margin-left:2em;
 
     &:hover {
       background-color: #26572b;
@@ -508,6 +507,18 @@ input[type="radio"]:checked:after {
         }
       }
     }
+  }
+}
+
+.row-count {
+  width:100%;
+  display:flex;
+  justify-content: flex-end;
+
+  &-col {
+    flex-direction: row;
+    display:flex;
+    justify-content: flex-end;
   }
 }
 
