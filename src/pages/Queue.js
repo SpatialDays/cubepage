@@ -30,7 +30,7 @@ const Queue = () => {
 
   // Refresh active tasks every 5 seconds
   useEffect(() => {
-    const interval = setInterval( async () => {
+    const interval = setInterval(async () => {
       await fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
       await fetchResults(setResults);
     }, 3000);
@@ -70,10 +70,7 @@ const Queue = () => {
                 </div>
                 <div className="queue-col queue-swirly">
                   {/* Loading Icon Swirly */}
-                  <CircularProgress 
-                    size={25}
-                  />
-
+                  <CircularProgress size={25} />
                 </div>
               </div>
             );
@@ -209,7 +206,6 @@ const Queue = () => {
           )}
         </div>
         <div className="error-bar">
-          <div className="error-text queue__button show__button"></div>
           <div className="error-text queue__button">
             <input
               type="button"
@@ -262,20 +258,58 @@ const Queue = () => {
                       <div
                         key={i}
                         onClick={() => {
-                          // Add the task to the downloading tasks
-                          setDownloadingTasks([
-                            ...downloadingTasks,
-                            {
-                              taskName: displayName,
-                              taskId: result.taskid,
-                              date: new Date().toLocaleString(),
-                            },
-                          ]);
-                          downloadResult(
-                            result.taskid,
-                            downloadingTasks,
-                            setDownloadingTasks
-                          );
+                          const taskid = result.taskid;
+                          const taskName = data.task;
+                          const displayName = taskNames[taskName];
+                          const date = new Date().toLocaleString();
+
+                          let msg = `
+                          Task ID: ${taskid}<br/>
+                          Task Name: ${displayName}<br/>
+                          Date: ${date}<br/><br/>
+                          
+                          `;
+
+                          // Popup a message to the user
+                          // Create a popup modal with the error message
+                          const modal = document.createElement("div");
+                          modal.className = "modal";
+                          modal.innerHTML = `
+                            <div class="modal__content">
+                              <div class="modal__header">
+                                <h1>Error</h1><br/>
+                              </div>
+                              <div class="modal__body">
+                                <p>${msg}</p>
+                              </div>
+                              <div class="modal__footer">
+                                <input type="button" class="modal__button modal__button-copy" value="Copy Error To Clipboard" />
+                                <input type="button" class="modal__button modal__button-report" value="Report Error" />
+                              </div>
+                            </div>
+                          `;
+                          document.body.appendChild(modal);
+
+
+                          modal.querySelector(".modal__button-copy").onclick =
+                            () => {
+                              navigator.clipboard.writeText(msg);
+                            };
+
+                          modal.querySelector(".modal__button-report").onclick =
+                            () => {
+                              window.open(
+                                `mailto:admin@comonsensing.org.uk?subject=Error%20Report - ${taskid}
+                                &body=${msg}`
+                              );
+                            };
+
+                          // if user clicks outside of the modal, close it
+                          window.onclick = function (event) {
+                            if (event.target == modal) {
+                              document.body.removeChild(modal);
+                            }
+                          };
                         }}
                         className="queue-row"
                       >
@@ -286,7 +320,7 @@ const Queue = () => {
                           <p>{result.dateCompleted}</p>
                         </div>
                         <div className="queue-col">
-                          <p>View log</p>
+                          <p>Report Error</p>
                         </div>
                       </div>
                     );
