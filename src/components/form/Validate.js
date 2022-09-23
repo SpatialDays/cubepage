@@ -183,6 +183,13 @@ const Validate = async (values, settings, taskName) => {
     errors
   );
 
+  await checkData(
+    values,
+    ["aoi_wkt", "baseline_start_date", "baseline_end_date", "platform"],
+
+    errors
+  );
+
   return errors;
 };
 export default Validate;

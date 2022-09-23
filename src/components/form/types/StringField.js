@@ -18,6 +18,11 @@ const StringField = ({ arg, setValue, error, runValidation }) => {
     return { value, label: value };
   });
 
+  // if example value is a string and there are no valid_values, use example value
+  if (arg.valid_values && arg.valid_values.length === 0 && typeof arg.example_value === "string") {
+    options.push({ value: arg.example_value, label: arg.example_value });
+  }
+
   const handleChange = (name, value) => {
     setValue(name, value);
     runValidation();
