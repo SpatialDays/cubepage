@@ -38,6 +38,7 @@ const DateField = ({ arg, showYearPicker, setValue, error, runValidation }) => {
       <Label text={arg.display_name} tooltip={arg.description} />
       <DatePicker
         showYearDropdown
+        dropdownMode="select"
         onChange={(e) => handleChange(arg.name, e)}
         selected={startDate}
         showYearPicker={showYearPicker ? true : false}
