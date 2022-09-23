@@ -30,11 +30,10 @@ const Queue = () => {
 
   // Refresh active tasks every 5 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchTaskNames(setTaskNames);
-      fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
-      fetchResults(setResults);
-    }, 5000);
+    const interval = setInterval( async () => {
+      await fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
+      await fetchResults(setResults);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -69,8 +68,12 @@ const Queue = () => {
                 <div className="queue-col">
                   <p>{task.dateCreated}</p>
                 </div>
-                <div className="queue-col">
-                  <p>Active</p>
+                <div className="queue-col queue-swirly">
+                  {/* Loading Icon Swirly */}
+                  <CircularProgress 
+                    size={25}
+                  />
+
                 </div>
               </div>
             );
