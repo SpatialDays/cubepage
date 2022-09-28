@@ -22,17 +22,19 @@ const Queue = () => {
 
   const [results, setResults] = useState([]);
 
+  const [numResults, setNumResults] = useState(20);
+
   useEffect(() => {
     fetchTaskNames(setTaskNames);
     fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
-    fetchResults(setResults);
-  }, []);
+    fetchResults(setResults, numResults);
+  }, [numResults]);
 
   // Refresh active tasks every 5 seconds
   useEffect(() => {
     const interval = setInterval(async () => {
       await fetchActiveTasks(setActiveTasks, setLoadingActiveTasks);
-      await fetchResults(setResults);
+      await fetchResults(setResults, numResults);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -212,7 +214,7 @@ const Queue = () => {
               className="task-submit"
               value={`Show All Results`}
               onClick={() => {
-                fetchResults(setResults, 999);
+                setNumResults(9999);
               }}
             />
             <input
@@ -289,7 +291,6 @@ const Queue = () => {
                             </div>
                           `;
                           document.body.appendChild(modal);
-
 
                           modal.querySelector(".modal__button-copy").onclick =
                             () => {
