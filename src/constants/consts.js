@@ -187,7 +187,38 @@ export const docs = {
       text: "Shoreline Extraction",
     },
     {
-      type: "coming-soon",
+      type: "paragraph-with-image",
+      subheading: "Description",
+      image: "Shoreline_change_D.PNG",
+      text: `The shoreline is derived from detecting the waterline in each image captured over the year, then determining the average shoreline position. This product can be filtered to only use images for a certain tidal range based on tide timetables, as well as a number of vectors to remove noise.
+      The annual shoreline location can be used to inform on changing long-term trends in coastline. This may be due to areas of high erosion, deposition or/and rising sea levels. This product could be used to aid decision making on construction of infrastructure such as sea walls or identification of vulnerable communities.  
+      `,
+      direction: "ltr",
+    },
+    {
+      type: "paragraph-with-image",
+      subheading: "Parameters",
+      imagefit: "contain",
+      image: "ShorlineWorkflow.png",
+      direction: "rtl",
+      text: `
+      Area of Interest: The area the user is interested in for this product. The larger this is, the longer the Data Cube will take to complete.
+      Start Year: The first year of the analysis. 
+      End Year: The final year of the analysis. 
+      Resolution: The spatial resolution of the product, in meters. As a minimum, this should be the native spatial resolution of the sensor. Doing larger spatial resolution (e.g. 100m) will involve resampling, the product will run quicker, and larger areas could be considered, but some of the detail will be lost.  
+      Coordinate Reference System: The Coordinate Reference System (CRS) for the product.
+      Tidal Range Proximity Lower Bound: Lower bound of desired tidal range in meters relative to mean sea level e.g. 0m is from mean sea level. Try 0m as a default. 
+      Tidal Range Proximity Upper Bound: Upper bound of desired tidal range in metres relative to mean sea level e.g. 1.5m is values from mean sea level. Try 1.5m as a default.
+      Water Threshold: The value for how strict the water masking should be, ranging from 0 for always land and 1 for always water. Try 0.9 as the default. 
+      Vertices Number: Minimum number of vertices to join the line, smaller numbers are more likely to be affected by noise in the water masks, higher numbers may smooth over small islands. Try 50 as a default. 
+
+      `,
+    },
+    {
+      type: "paragraph-with-image",
+      subheading: "Outputs",
+      text: `Vectors of the shoreline labelled by year. The vectors are in GeoJSON format. `,
+      image: "output-1.svg",
     },
   ],
   "FractionalCover.FractionalCover_Task": [
@@ -612,7 +643,43 @@ export const docs = {
       text: "S1 Median",
     },
     {
-      type: "coming-soon",
+      type: "paragraph-with-image",
+      subheading: "Description",
+      image: "S1image.png",
+      direction: "ltr",
+      text: `
+      This product creates a median composite from the Sentinel-1 backscatter ARD, for both the VV and the VH bands, creating a two-band output product. 
+      Creating a longer time period will reduce the influence of noise on the dataset but choosing a shorter time period may enable specific events to be detected such as floods. Sentinel-1 is not impacted by cloud cover in the same way as Sentinel-2.
+      The workflow followed by the Data Cube to produce this product is provided in the diagram below.
+      `,
+    },
+    {
+      type: "paragraph-with-image",
+      subheading: "Parameters",
+      imagefit: "contain",
+      image: "S1Workflow.png",
+      caption: "Cube process workflow for creation of S1 products.",
+      text: `Area of Interest: The area the user is interested in for this product. The larger this is, the longer the Data Cube will take to complete. 
+      Start Date: The start of the time period of which the user would like the data for analysis.
+      End Date: The end of the time period of which the user would like the data for analysis.
+      Coordinate Reference System: The Coordinate Reference System (CRS) for the product.
+      Resolution: The spatial resolution of the product, in meters. As a minimum, this should be the native spatial resolution of the sensor, 20m in the case of Sentinel-1. Doing larger spatial resolution (e.g. 100m) will involve resampling, the product will run quicker, and larger areas could be considered, but some of the detail will be lost. `,
+      direction: "rtl",
+    },
+    {
+      type: "paragraph-with-image",
+      subheading: "Outputs",
+      text: `The output product is a two band GeoTiff, the first band is the VV channel data, and the second band is VH channel data.`,
+      image: "output-1.svg",
+      direction: "ttb",
     },
   ],
 };
+
+const allTypes = [
+  "header",
+  "paragraph",
+  "paragraph-with-image",
+  "paragraph-with-multiple-images",
+  "use-case",
+];

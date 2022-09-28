@@ -11,7 +11,6 @@ const Docs = ({ tasks }) => {
       <Back />
       <div className="docs-container">
         <div className="docs-content">
-       
           {docs[taskName] &&
             docs[taskName].map((doc, index) => (
               <div key={index} className={`docs-content__item`}>
@@ -43,7 +42,7 @@ const Docs = ({ tasks }) => {
                                 <span key={index}>
                                   <b>{lineArray[0]}: </b>
                                   <span>{lineArray[1]}</span>
-                                  <br />
+                                  <br /><br/>
                                 </span>
                               );
                             }
@@ -119,6 +118,34 @@ const Docs = ({ tasks }) => {
                       })}
                     </div>
                   </>
+                )}
+
+                {doc.type === "paragraph" && (
+                  <div className="docs-paragraph">
+                    <h3>{doc.subheading}</h3>
+                    <p>
+                      {doc.text.split("\n").map((line, index) => {
+                        if (line.includes(":")) {
+                          const lineArray = line.split(":");
+                          if (lineArray[0].length < 60) {
+                            return (
+                              <span key={index}>
+                                <b>{lineArray[0]}: </b>
+                                <span>{lineArray[1]}</span>
+                                <br />
+                              </span>
+                            );
+                          }
+                        }
+                        return (
+                          <span key={index}>
+                            {line}
+                            <br />
+                          </span>
+                        );
+                      })}
+                    </p>
+                  </div>
                 )}
 
                 {doc.type === "coming-soon" && (

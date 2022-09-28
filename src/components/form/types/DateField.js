@@ -28,7 +28,13 @@ const DateField = ({ arg, showYearPicker, setValue, error, runValidation }) => {
   }, [arg.default]);
 
   const handleChange = (name, value) => {
-    setValue(name, value.toISOString().split("T")[0], { shouldValidate: true });
+    try {
+      setValue(name, value.toISOString().split("T")[0], {
+        shouldValidate: true,
+      });
+    } catch {
+      console.log(`Not a date`);
+    }
     setStartDate(value);
     runValidation();
   };
