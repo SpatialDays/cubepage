@@ -109,7 +109,7 @@ const WKTField = ({
               value={country}
               checked={selectedCountry === country}
             />
-            <span>{countries[country].value}</span>
+            <span>{countries[country] && countries[country].value}</span>
           </div>
         ))}
       </div>

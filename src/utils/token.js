@@ -15,7 +15,15 @@ export const requestToken = async (name, pass, setError) => {
       return 200;
     })
     .catch(function (e) {
-      setError("Incorrect username/password");
+      console.log(e);
+      // if response is 'No projects' then setError to You do not been granted access to any projects yet. Please contact the system administrator
+      if (e.response.data === "No projects") {
+        setError(
+          "You have not been granted access to any projects yet. Please contact the system administrator and wait for your account to be activated."
+        );
+      } else {
+        setError("Incorrect username/password");
+      }
       return 403;
     });
 };
@@ -23,12 +31,16 @@ export const requestToken = async (name, pass, setError) => {
 export const refreshToken = async () => {
   const axios = require("axios");
   let values = { token: window.localStorage.getItem("cubetoken") };
-  
+
   const tokenAge =
     new Date().getTime() - window.localStorage.getItem("tokenAge");
-  
+
   // if token is more than 10 minutes old
-  if (tokenAge > 1000 * 60 * 10 || !window.localStorage.getItem("cubetoken") || !window.localStorage.getItem("tokenAge")) {
+  if (
+    tokenAge > 1000 * 60 * 10 ||
+    !window.localStorage.getItem("cubetoken") ||
+    !window.localStorage.getItem("tokenAge")
+  ) {
     const headers = {
       "Content-Type": "application/json",
     };

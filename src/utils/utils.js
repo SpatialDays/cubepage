@@ -19,7 +19,8 @@ export const fetchTasks = async (setTasks, setSettings) => {
     .catch(function (error) {
       if ((error.response && error.response.status > 400) || !error.response) {
         console.log(error);
-        window.location.href = "/login";
+        
+        window.location.href = "/login?error=token-expired";
       }
     });
 };
