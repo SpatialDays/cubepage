@@ -283,16 +283,16 @@ export const docs = {
       type: "paragraph-with-image",
       subheading: "Description",
       image: "NDVI-anomaly.png",
-      text: `The Normalised Difference Vegetation Index (NDVI) represents the ‘greenness’ of a vegetated surface, which relates to the chlorophyll content of the vegetation.  It is calculated using the Red and Near-Infrared (NIR) Bands of an optical sensor, based upon this equation: 
+      text: `The Normalised Difference Vegetation Index (NDVI) represents the ‘greenness’ of a vegetated surface, which relates to the chlorophyll content of the vegetation.  It is calculated using the Red and Near-Infrared (NIR) bands of an optical sensor, based upon this equation: 
       NDVI = (NIR – RED)/(NIR + Red) 
 
-      The resulting NDVI value tells us how vegetated a surface is.  For each pixel, the value ranges from minus one (-1) to plus one (+1); a surface with non-green vegetation would give you a value close to zero, whilst values closer to +1 indicate the highest density of green vegetation.
+      The resulting NDVI value tells us how vegetated a surface is.  For each pixel, the value ranges from minus one (-1) to plus one (+1); a surface with non-green vegetation would give you a value close to 0, whilst values closer to +1 indicate the highest density of green vegetation.
 
-      This product examines the changes in NDVI between two time periods. It is recommended that these two time periods are seasonally comparable to prevent ‘changes’ being seen as a result of seasonal variation (e.g. both time periods selected are either for the dry or wet season respectively). Areas of positive change represent an increase in the vegetation density on the surface, whilst negative values represent a decrease in the vegetation density. Values range from -1 to 1.  
+      This product examines the changes in NDVI between two time periods. It is recommended that these two time periods are seasonally comparable to prevent seasonal variation being seen as ‘changes’(e.g. both time periods selected are either for the dry or wet season respectively). Areas of positive change represent an increase in the vegetation density on the surface, whilst negative values represent a decrease in the vegetation density.  
 
-      The NDVI Anomaly essentially provides a qualitative indication of how ‘good’ or ‘bad’ the current vegetation situation is when compared to a reference season. 
+      The NDVI Anomaly essentially provides a qualitative indication of how vegetated a surface is compared to a reference season. 
 
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below.`,
+      The Data Cube workflow is provided in the diagram below.`,
       direction: "ltr",
     },
     {
@@ -301,7 +301,7 @@ export const docs = {
       imagefit: "contain",
       image: "cube-process.png",
       text: `
-      Baseline Sensor and Analysis Sensor: Only two sensors are applicable to NDVI Anomaly, Sentinel-2 and the Landsat series because we need the Near Infrared and Red bands from multi-spectral sensors in the algorithm.  For the best comparison, it is recommended not to mix sensors even though the bands are comparable (but not identical). The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
+      Baseline Sensor and Analysis Sensor: Only two sensors are applicable to NDVI Anomaly, Sentinel-2 and the Landsat series because the Near Infrared and Red bands from multi-spectral sensors are required for  algorithm.  For the best comparison, it is recommended not to mix sensors even though the bands are comparable (but not identical). The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
 
       Baseline and Analysis Time Range: The two time periods with which we want to compare the NDVI, these should be comparable seasonally. The baseline is the reference time period, whilst the analysis is the year we want to observe the changes in relation to the baseline.  If the result has ‘holes’ in it (areas of no data), try increasing the time period, this is a result of cloud cover.
 
@@ -332,7 +332,7 @@ export const docs = {
         },
       ],
       direction: "ttb",
-      text: `The output Product is a single GeoTIFF file, with values ranging from -1 to 1 where negative values indicate a reduction in surface vegetation relative to the baseline time period, and positive values indicate an increase in surface vegetation.
+      text: `The output Product is a single GeoTIFF file, with values ranging from -1 to 1 where negative values indicate a reduction in vegetation relative to the baseline time period, and positive values indicate an increase in vegetation. A suggested styling is to use a Red (-1) to Green (+1) styling ramp -  red values will show where vegetation has been lost, and green where there has been gains in vegetation, yellow colours show where there is no change. 
 
       If ‘holes’ occur in your output, this could be due to two things:
       Water is present in your AOI – areas of water are masked out during processing.
