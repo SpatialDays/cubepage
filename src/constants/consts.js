@@ -84,9 +84,9 @@ export const docs = {
       type: "paragraph-with-image",
       subheading: "Description",
       image: "water-change.png",
-      text: `For every image from the Sentinel-1, Sentinel-2 and Landsat series satellites, a per scene pre-generated water mask was generated. This Water Change product takes advantage of these pre-generated water masks, but provides a change product, in which recorded surface water between two separate time periods can be directly compared.
+      text: `For every image from the Sentinel-1, Sentinel-2 and Landsat series satellites, a per scene pre-generated water mask was generated. This product uses these water masks, to generate a change product, in which the surface water between two time periods can be compared.
       
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below. `,
+      The Data Cube workflow is in the diagram below. `,
       direction: "ltr",
     },
     {
