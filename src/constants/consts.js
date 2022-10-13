@@ -65,14 +65,14 @@ export const docs = {
       image: "output-scale.png",
       caption:
         "Water Permanency example output over a lake, showing variable water permamency at the north end of the Lake.",
-      text: "The output product is a single raster image in GeoTIFF format with values ranging from 0 to 100, representing the percentage of how many observations each pixel was recorded as having water on the surface by the selected sensor. ",
+      text: "The output product is a single raster image in GeoTIFF format with values ranging from 0 to 100, representing the percentage of how many observations each pixel was recorded as having water on the surface by the selected sensor. To display the values start by using a colour ramp with a minimum value of 0 and maximum value of 100.",
       direction: "rtl",
     },
     {
       type: "use-case",
-      text: `The Water Permanency product could be used to inform on the fluctuation of water bodies over a time period to help identify water resources vulnerable to drying out or areas of regular flooding.
+      text: `The Water Permanency product could inform on the fluctuation of water bodies over a time period to help identify water resources vulnerable to drying out or areas of regular flooding.
       
-      This image on the right above is for an inland water body in Fiji, Vaturu Dam.  This is a manmade dam that provides water to the dry western division of Viti Levu. In December 2019, water levels were reported to be low in this dam. This product can be used to see the water permanency within the dam. `,
+      The image on the right above is for an inland water body in Fiji, Vaturu Dam.  This is a manmade dam that provides water to the dry western division of Viti Levu. In December 2019, water levels were reported to be low in this dam. This product can be used to see the water permanency within the dam. `,
     },
   ],
   "WaterChange.WaterChange_Task": [
