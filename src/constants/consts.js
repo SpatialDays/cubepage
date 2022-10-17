@@ -94,7 +94,7 @@ export const docs = {
       subheading: "Parameters",
       imagefit: "contain",
       image: "cube-process.png",
-      text: `Baseline Sensor and Analysis Sensor: As water masks have been generated for Sentinel-2, Sentinel-1, and the Landsat series, all these sensors can be used for this analysis. For the best comparison, it is recommended not to mix sensors even though the bands are comparable (but not identical). The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
+      text: `Baseline Sensor and Analysis Sensor: As water masks have been generated for Sentinel-2, Sentinel-1, and the Landsat series, all these sensors can be selected. For the best comparison, it is recommended not to mix sensors. The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
 
       Baseline and Analysis Time Range: The two time periods we want to see water change across. The baseline is the reference time period, whilst the analysis is the year we want to observe the changes in relation to the baseline. If the result has ‘holes’ in it (areas of no data), try increasing the time period, this is a result of cloud cover.
       
@@ -104,7 +104,7 @@ export const docs = {
       
       Coordinate Reference System: The Coordinate Reference System (CRS) desired for the Product.  This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
 
-      Percentage Confidence: The level of confidence acceptable for a given pixel, 5% is a good starting value.
+      Percentage Confidence: The level of confidence for the ml generated water masks, 5% is a good starting value.
       
       Water Threshold: The value for how strict the water masking should be, ranging from 0 for always land and 1 for always water, 0.3 is a good starting value. `,
       direction: "rtl",
