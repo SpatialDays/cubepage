@@ -121,7 +121,7 @@ export const docs = {
       
       2. Threshold Change.  This product is based on a user-defined threshold and produces binary values of 0 or 1 depending on whether they are above or below the threshold value. 
       
-      These output products show where surface water has changed between two time periods.`,
+      These output products show where surface water has changed between two time periods. To display the values start by using a colour ramp with a minimum value of -1 and maximum value of 1. Positive values show where there has been an increase in the water permamency of a surface, and negative a reduction in the water permamency of a surface.`,
     },
     {
       type: "use-case",
