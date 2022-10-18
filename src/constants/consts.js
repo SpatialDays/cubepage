@@ -151,7 +151,7 @@ export const docs = {
       subheading: "Parameters",
       imagefit: "contain",
       image: "cube-process.png",
-      text: `Sensor: Only two sensors are applicable to NDTI, Sentinel-2 and the Landsat series because only multi-spectral sensors can be used.  The sensor you choose depends on the time period you are interested in.
+      text: `Sensor: Only two sensors are applicable to NDTI, Sentinel-2 and the Landsat series as a multi-spectral sensor is required.  The sensor you choose depends on the time period you are interested in.
 
       Time Range: The time period over which you would like the images for the analysis. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
       
