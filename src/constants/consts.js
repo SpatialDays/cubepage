@@ -157,7 +157,7 @@ export const docs = {
       
       Coordinate Reference System: The Coordinate Reference System (CRS) desired for the Product.  This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
       
-      Area of Interest:  The area that you, as the user, are interested in producing the product for. The larger this is, the longer the process will take to complete. The Data Cube products were designed to be applied on a regional rather than a national scale so. If the process is taking too long to run, or you get an error, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
+      Area of Interest:  The area for the analysis. The larger this is, the longer the process will take to complete. The Data Cube products were designed to be applied on a regional rather than a national scale so. If the process is taking too long to run, or you get an error, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
       
       Resolution: The spatial resolution of the product, in meters. As a minimum, this should be is the native spatial resolution of a sensor (10m for Sentinel-2, 30m for the Landsat series). Doing larger spatial resolutions (e.g. 100m) will mean your product will run quicker, and you can potentially look at larger areas but you may lose some of the spatial detail.
       
@@ -242,7 +242,7 @@ export const docs = {
 
       The algorithm used to calculate Fractional Cover was developed by Digital Earth Australia and is not specifically calibrated for Fiji.
       
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below. `,
+      The Data Cube workflow is provided in the diagram below. `,
       direction: "ltr",
     },
     {
@@ -250,13 +250,13 @@ export const docs = {
       subheading: "Parameters",
       imagefit: "contain",
       image: "cube-process.png",
-      text: `Sensor: Only two sensors are applicable to Fractional Cover, Sentinel-2 and the Landsat series because only multi-spectral sensors can be used.  The sensor you choose depends on the time period you are interested in.
+      text: `Sensor: Only two sensors are applicable to Fractional Cover, Sentinel-2 and the Landsat series as multi-spectral sensors are required.  The sensor you choose depends on the time period you are interested in.
 
-      Time Range: The time period over which you would like the images for the analysis. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
+      Time Range: The time period for the analysis. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
       
       Coordinate Reference System:  The Coordinate Reference System (CRS) desired for the Product.  This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
 
-      Area of Interest: The area that you, as the user, are interested in producing the product for. The larger this is, the longer the Data Cube will take to complete it. The Data Cube products were designed to be done on a regional basis rather than a national basis so, if your Area of Interest is too large, you may even get an error saying so. In this case, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
+      Area of Interest:  The area for the analysis. The larger this is, the longer the process will take to complete. The Data Cube products were designed to be applied on a regional rather than a national scale so. If the process is taking too long to run, or you get an error, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
 
       Resolution: The spatial resolution of the product, in meters. As a minimum, this should be is the native spatial resolution of a sensor (10m for Sentinel-2, 30m for the Landsat series). Doing larger spatial resolutions (e.g. 100m) will mean your product will run quicker, and you can potentially look at larger areas but you may lose some of the spatial detail.
       `,
