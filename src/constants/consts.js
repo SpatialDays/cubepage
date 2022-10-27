@@ -256,7 +256,7 @@ export const docs = {
       
       Coordinate Reference System:  The Coordinate Reference System (CRS) desired for the Product.  This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
 
-      Area of Interest:  The area for the analysis. The larger this is, the longer the process will take to complete. The Data Cube products were designed to be applied on a regional rather than a national scale so. If the process is taking too long to run, or you get an error, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
+      Area of Interest:  The area for the analysis. The larger this is, the longer the process will take to complete. The Data Cube products should be applied on a regional rather than national scale. If the process is taking too long to run, you will need to divide your Area of Interest into ‘chunks’ and run each chunk separately.
 
       Resolution: The spatial resolution of the product, in meters. As a minimum, this should be is the native spatial resolution of a sensor (10m for Sentinel-2, 30m for the Landsat series). Doing larger spatial resolutions (e.g. 100m) will mean your product will run quicker, and you can potentially look at larger areas but you may lose some of the spatial detail.
       `,
