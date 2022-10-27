@@ -34,11 +34,9 @@ export const docs = {
       type: "paragraph-with-image",
       subheading: "Description",
       image: "water-perm.png",
-      text: `For every image from the Sentinel-1, Sentinel-2 and Landsat series satellites, a per scene pre-generated water mask was generated. The Water Permanency product uses these water masks to generate its output.
-
-      This product uses these per scene pre-generated water masks to provide information on the permanency of a water surface. The permanency is given as a percentage of the total number of observations in which water is detected in each pixel.
+      text: `For every image from the Sentinel-1, Sentinel-2 and Landsat series satellites, a per scene pre-generated water mask was generated. The Water Permanency product uses these water masks to provide information on the permanency of a water surface. The permanency is given as a percentage of the total number of observations in which water is detected in each pixel.
       
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below. `,
+      The workflow followed by the Data Cube workflow to produce this product is provided in the diagram below. `,
       direction: "ltr",
     },
     {
@@ -48,13 +46,13 @@ export const docs = {
       image: "cube-process.png",
       text: `Sensor: As water masks have been generated for Sentinel-2, Sentinel-1, and the Landsat series, all these sensors can be used for this analysis. The sensor you choose depends on the time period you are interested in.
 
-      Time Range: The time period over which you would like the images for the analysis. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
+      Time Range: The time period for the analysis images. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
     
-      Coordinate Reference System: The Coordinate Reference System (CRS) desired for the Product. This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
+      Coordinate Reference System: The Coordinate Reference System (CRS) desired for the Product. EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
       
-      Area of Interest: The area that you, as the user, are interested in producing the product for. The larger this is, the longer the Data Cube will take to complete it. The Data Cube products were designed to be done on a regional basis rather than a national basis so, if your Area of Interest is too large, you may even get an error saying so. In this case, you will need to divide your Area of Interest into ‘chunks’ and run each chunk separately.
+      Area of Interest: The area that you, as the user, are interested in producing the product for. The larger this is, the longer the Data Cube will take to complete it. The Data Cube products were designed for a regional rather than a national basis so, if your Area of Interest is too large, your products may not run. In this case, you will need to divide your Area of Interest into ‘chunks’ and run each chunk separately.
       
-      Resolution: The spatial resolution of the product, in meters. As a minimum, this should be the native spatial resolution of a sensor (10m for Sentinel-2, 30m for the Landsat series). Doing larger spatial resolutions (e.g. 100m) will mean your product will run quicker, and you can potentially look at larger areas but you may lose some of the spatial detail.
+      Resolution: The spatial resolution of the product, in meters. As a minimum, this should be the native spatial resolution of a sensor (10m for Sentinel-2, 30m for the Landsat series, 20m for Sentinel-1). Doing larger spatial resolutions (e.g. 100m) will mean your product will run quicker, and you can potentially look at larger areas but you will lose some of the spatial detail.
       
       Percentage Confidence: The level of confidence acceptable for a given pixel, 5% is a good starting value.
       
@@ -67,14 +65,14 @@ export const docs = {
       image: "output-scale.png",
       caption:
         "Water Permanency example output over a lake, showing variable water permamency at the north end of the Lake.",
-      text: "The output product is a single raster image in GeoTIFF format with values ranging from 0 to 100, representing the percentage of how many observations each pixel was recorded as having water on the surface by the selected sensor. ",
+      text: "The output product is a single raster image in GeoTIFF format with values ranging from 0 to 100, representing the percentage of how many observations each pixel was recorded as having water on the surface by the selected sensor. To display the values start by using a colour ramp with a minimum value of 0 and maximum value of 100.",
       direction: "rtl",
     },
     {
       type: "use-case",
-      text: `The Water Permanency product could be used to inform on the fluctuation of water bodies over a time period to help identify water resources vulnerable to drying out or areas of regular flooding.
+      text: `The Water Permanency product could inform on the fluctuation of water bodies over a time period to help identify water resources vulnerable to drying out or areas of regular flooding.
       
-      This image on the right above is for an inland water body in Fiji, Vaturu Dam.  This is a manmade dam that provides water to the dry western division of Viti Levu. In December 2019, water levels were reported to be low in this dam. This product can be used to see the water permanency within the dam. `,
+      The image on the right above is for an inland water body in Fiji, Vaturu Dam.  This is a manmade dam that provides water to the dry western division of Viti Levu. In December 2019, water levels were reported to be low in this dam. This product can be used to see the water permanency within the dam. `,
     },
   ],
   "WaterChange.WaterChange_Task": [
@@ -86,9 +84,9 @@ export const docs = {
       type: "paragraph-with-image",
       subheading: "Description",
       image: "water-change.png",
-      text: `For every image from the Sentinel-1, Sentinel-2 and Landsat series satellites, a per scene pre-generated water mask was generated. This Water Change product takes advantage of these pre-generated water masks, but provides a change product, in which recorded surface water between two separate time periods can be directly compared.
+      text: `For every image from the Sentinel-1, Sentinel-2 and Landsat series satellites, a per scene pre-generated water mask was generated. This product uses these water masks, to generate a change product, in which the surface water between two time periods can be compared.
       
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below. `,
+      The Data Cube workflow is in the diagram below. `,
       direction: "ltr",
     },
     {
@@ -96,7 +94,7 @@ export const docs = {
       subheading: "Parameters",
       imagefit: "contain",
       image: "cube-process.png",
-      text: `Baseline Sensor and Analysis Sensor: As water masks have been generated for Sentinel-2, Sentinel-1, and the Landsat series, all these sensors can be used for this analysis. For the best comparison, it is recommended not to mix sensors even though the bands are comparable (but not identical). The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
+      text: `Baseline Sensor and Analysis Sensor: As water masks have been generated for Sentinel-2, Sentinel-1, and the Landsat series, all these sensors can be selected. For the best comparison, it is recommended not to mix sensors. The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
 
       Baseline and Analysis Time Range: The two time periods we want to see water change across. The baseline is the reference time period, whilst the analysis is the year we want to observe the changes in relation to the baseline. If the result has ‘holes’ in it (areas of no data), try increasing the time period, this is a result of cloud cover.
       
@@ -106,7 +104,7 @@ export const docs = {
       
       Coordinate Reference System: The Coordinate Reference System (CRS) desired for the Product.  This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
 
-      Percentage Confidence: The level of confidence acceptable for a given pixel, 5% is a good starting value.
+      Percentage Confidence: The level of confidence for the ml generated water masks, 5% is a good starting value.
       
       Water Threshold: The value for how strict the water masking should be, ranging from 0 for always land and 1 for always water, 0.3 is a good starting value. `,
       direction: "rtl",
@@ -123,7 +121,7 @@ export const docs = {
       
       2. Threshold Change.  This product is based on a user-defined threshold and produces binary values of 0 or 1 depending on whether they are above or below the threshold value. 
       
-      These output products show where surface water has changed between two time periods.`,
+      These output products show where surface water has changed between two time periods. To display the values start by using a colour ramp with a minimum value of -1 and maximum value of 1. Positive values show where there has been an increase in the water permamency of a surface, and negative a reduction in the water permamency of a surface.`,
     },
     {
       type: "use-case",
@@ -145,7 +143,7 @@ export const docs = {
 
       This equation is an indicator of the relative turbidity of a water body, as pure water usually has greater reflectance in the green rather than the red wavelengths. However, in more turbid waters, it is reported that the reflectance in the red wavelength increases.  The output of this product is an index that improves our view of turbidity. Higher values of NDTI indicate higher turbidity and lower values, less turbidity.  Values range from -1 to 1.
       
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below. `,
+      The Data Cube workflow is provided in the diagram below. `,
       direction: "ltr",
     },
     {
@@ -153,13 +151,13 @@ export const docs = {
       subheading: "Parameters",
       imagefit: "contain",
       image: "cube-process.png",
-      text: `Sensor: Only two sensors are applicable to NDTI, Sentinel-2 and the Landsat series because only multi-spectral sensors can be used.  The sensor you choose depends on the time period you are interested in.
+      text: `Sensor: Only two sensors are applicable to NDTI, Sentinel-2 and the Landsat series as a multi-spectral sensor is required.  The sensor you choose depends on the time period you are interested in.
 
       Time Range: The time period over which you would like the images for the analysis. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
       
       Coordinate Reference System: The Coordinate Reference System (CRS) desired for the Product.  This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
       
-      Area of Interest:  The area that you, as the user, are interested in producing the product for. The larger this is, the longer the Data Cube will take to complete it. The Data Cube products were designed to be done on a regional basis rather than a national basis so, if your Area of Interest is too large, you may even get an error saying so. In this case, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
+      Area of Interest:  The area for the analysis. The larger this is, the longer the process will take to complete. The Data Cube products were designed to be applied on a regional rather than a national scale so. If the process is taking too long to run, or you get an error, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
       
       Resolution: The spatial resolution of the product, in meters. As a minimum, this should be is the native spatial resolution of a sensor (10m for Sentinel-2, 30m for the Landsat series). Doing larger spatial resolutions (e.g. 100m) will mean your product will run quicker, and you can potentially look at larger areas but you may lose some of the spatial detail.
       
@@ -244,7 +242,7 @@ export const docs = {
 
       The algorithm used to calculate Fractional Cover was developed by Digital Earth Australia and is not specifically calibrated for Fiji.
       
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below. `,
+      The Data Cube workflow is provided in the diagram below. `,
       direction: "ltr",
     },
     {
@@ -252,13 +250,13 @@ export const docs = {
       subheading: "Parameters",
       imagefit: "contain",
       image: "cube-process.png",
-      text: `Sensor: Only two sensors are applicable to Fractional Cover, Sentinel-2 and the Landsat series because only multi-spectral sensors can be used.  The sensor you choose depends on the time period you are interested in.
+      text: `Sensor: Only two sensors are applicable to Fractional Cover, Sentinel-2 and the Landsat series as multi-spectral sensors are required.  The sensor you choose depends on the time period you are interested in.
 
-      Time Range: The time period over which you would like the images for the analysis. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
+      Time Range: The time period for the analysis. If the result has ‘holes’ in it (areas of no data), try increasing the time period (the holes are a result of cloud cover).
       
       Coordinate Reference System:  The Coordinate Reference System (CRS) desired for the Product.  This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
 
-      Area of Interest: The area that you, as the user, are interested in producing the product for. The larger this is, the longer the Data Cube will take to complete it. The Data Cube products were designed to be done on a regional basis rather than a national basis so, if your Area of Interest is too large, you may even get an error saying so. In this case, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
+      Area of Interest:  The area for the analysis. The larger this is, the longer the process will take to complete. The Data Cube products were designed to be applied on a regional rather than a national scale so. If the process is taking too long to run, or you get an error, you will need to divide your Area of Interest into ‘chunks’ and then run each chunk separately.
 
       Resolution: The spatial resolution of the product, in meters. As a minimum, this should be is the native spatial resolution of a sensor (10m for Sentinel-2, 30m for the Landsat series). Doing larger spatial resolutions (e.g. 100m) will mean your product will run quicker, and you can potentially look at larger areas but you may lose some of the spatial detail.
       `,
@@ -283,16 +281,16 @@ export const docs = {
       type: "paragraph-with-image",
       subheading: "Description",
       image: "NDVI-anomaly.png",
-      text: `The Normalised Difference Vegetation Index (NDVI) represents the ‘greenness’ of a vegetated surface, which relates to the chlorophyll content of the vegetation.  It is calculated using the Red and Near-Infrared (NIR) Bands of an optical sensor, based upon this equation: 
+      text: `The Normalised Difference Vegetation Index (NDVI) represents the ‘greenness’ of a vegetated surface, which relates to the chlorophyll content of the vegetation.  It is calculated using the Red and Near-Infrared (NIR) bands of an optical sensor, based upon this equation: 
       NDVI = (NIR – RED)/(NIR + Red) 
 
-      The resulting NDVI value tells us how vegetated a surface is.  For each pixel, the value ranges from minus one (-1) to plus one (+1); a surface with non-green vegetation would give you a value close to zero, whilst values closer to +1 indicate the highest density of green vegetation.
+      The resulting NDVI value tells us how vegetated a surface is.  For each pixel, the value ranges from minus one (-1) to plus one (+1); a surface with non-green vegetation would give you a value close to 0, whilst values closer to +1 indicate the highest density of green vegetation.
 
-      This product examines the changes in NDVI between two time periods. It is recommended that these two time periods are seasonally comparable to prevent ‘changes’ being seen as a result of seasonal variation (e.g. both time periods selected are either for the dry or wet season respectively). Areas of positive change represent an increase in the vegetation density on the surface, whilst negative values represent a decrease in the vegetation density. Values range from -1 to 1.  
+      This product examines the changes in NDVI between two time periods. It is recommended that these two time periods are seasonally comparable to prevent seasonal variation being seen as ‘changes’(e.g. both time periods selected are either for the dry or wet season respectively). Areas of positive change represent an increase in the vegetation density on the surface, whilst negative values represent a decrease in the vegetation density.  
 
-      The NDVI Anomaly essentially provides a qualitative indication of how ‘good’ or ‘bad’ the current vegetation situation is when compared to a reference season. 
+      The NDVI Anomaly essentially provides a qualitative indication of how vegetated a surface is compared to a reference season. 
 
-      The workflow followed by the Data Cube to produce this product is provided in the diagram below.`,
+      The Data Cube workflow is provided in the diagram below.`,
       direction: "ltr",
     },
     {
@@ -301,7 +299,7 @@ export const docs = {
       imagefit: "contain",
       image: "cube-process.png",
       text: `
-      Baseline Sensor and Analysis Sensor: Only two sensors are applicable to NDVI Anomaly, Sentinel-2 and the Landsat series because we need the Near Infrared and Red bands from multi-spectral sensors in the algorithm.  For the best comparison, it is recommended not to mix sensors even though the bands are comparable (but not identical). The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
+      Baseline Sensor and Analysis Sensor: Only Sentinel-2 and the Landsat series are applicable to NDVI Anomaly,as the Near Infrared and Red bands from multi-spectral sensors are required for the algorithm.  For the best comparison, it is recommended not to mix sensors even though the bands are comparable (but not identical). The baseline sensor is that of the reference year, and the analysis sensor is the one we want to observe the changes in relation to the baseline. The sensor you choose depends on the time period you are interested in.
 
       Baseline and Analysis Time Range: The two time periods with which we want to compare the NDVI, these should be comparable seasonally. The baseline is the reference time period, whilst the analysis is the year we want to observe the changes in relation to the baseline.  If the result has ‘holes’ in it (areas of no data), try increasing the time period, this is a result of cloud cover.
 
@@ -311,7 +309,7 @@ export const docs = {
 
       Coordinate Reference System: The Coordinate Reference System (CRS) desired for the product. This is EPSG:3460 for Fiji, and EPSG:3832 for Vanuautu and the Solomon Islands.
 
-      Mosaic Type: The type of mosaic, either max_ndvi or median. This choice determines how the data within the time range is aggregated together. 
+      Mosaic Type: The type of mosaic, either max_ndvi which is the maximum values, or median. This choice determines how the data within the time range is aggregated together. 
 
       Water Threshold: The value for how strict the water masking should be, ranging from 0 for always land and 1 for always water, 0.3 is a good starting value. `,
       direction: "rtl",
@@ -332,7 +330,7 @@ export const docs = {
         },
       ],
       direction: "ttb",
-      text: `The output Product is a single GeoTIFF file, with values ranging from -1 to 1 where negative values indicate a reduction in surface vegetation relative to the baseline time period, and positive values indicate an increase in surface vegetation.
+      text: `The output Product is a single GeoTIFF file, with values ranging from -1 to 1 where negative values indicate a reduction in vegetation relative to the baseline time period, and positive values indicate an increase in vegetation. A suggested styling is to use a Red (-1) to Green (+1) styling ramp -  red values will show where vegetation has been lost, and green where there has been gains in vegetation, yellow colours show where there is no change. 
 
       If ‘holes’ occur in your output, this could be due to two things:
       Water is present in your AOI – areas of water are masked out during processing.
@@ -559,7 +557,7 @@ export const docs = {
       type: "paragraph-with-image",
       subheading: "Outputs",
       image: "output-1.svg",
-      text: `The output product comprises three single band GeoTiff files, with values ranging from -100 to 100, where positive change in a band shows an increase of this land cover type, whilst negative shows a decrease. 
+      text: `The output product is three single band GeoTiff files, with values ranging from -100 to 100, where positive change in a band shows an increase of this land cover type, whilst negative shows a decrease. 
 
       If ‘holes’ occur in your output, this could be due to two things:
       
