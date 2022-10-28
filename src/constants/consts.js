@@ -228,14 +228,14 @@ export const docs = {
       type: "paragraph-with-image",
       subheading: "Description",
       image: "FractionalCover.jpg",
-      text: `Fractional Cover is a land cover product containing three bands for the area selected.  Each pixel is given a fraction in each band, representing the land cover at the surface. The three fractions are -
+      text: `Fractional Cover is a land cover product consisting of three bands.  Each pixel is given a fraction in each band, representing the land cover at the surface. The three fractions are -
       Bare Soil (BS) - areas where no vegetation cover exists. 
       Photosynthetic Vegetation (PV) - areas where the vegetation is still active and 'green'.
       Non-photosynthetic Vegetation (NPV) - areas where the vegetation is 'dead' such as branches and fallen leaves or dry vegetation.
       
       The total value of each pixel equals 100, this is split between the three fractions e.g. a pixel containing mostly fresh vegetation, but with small areas of bare soil, may be represented as BS 10, PV: 90, NPV: 0. 
       
-      The fractions are represented as an RGB image, where the color represents the dominance of each fraction within a pixel -
+      The fractions can be represented as an RGB image, where the color represents the dominance of each fraction within a pixel -
       BS - Red
       PV - Green
       NPV - Blue
