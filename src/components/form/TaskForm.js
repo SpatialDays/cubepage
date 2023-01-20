@@ -53,11 +53,42 @@ const TaskForm = ({
         return errors;
       },
       onSubmit: (values) => {
+
+        // sets vars to store values of the upper and lower thresholds if they exist in the form
+        let minC;
+        let maxC;
+        let tide_range_lower;
+        let tide_range_upper;
+
         Object.keys(values).forEach((value) => {
           if (values[value].length === 0) {
             setError(value, "This field cannot be left blank.");
-          }
+          };
+
+          // if any of the upper and lower thresholds exist in the form, their value is assigned
+          if (value === 'minC') {
+            minC = values[value];
+          } else if (value === 'maxC') {
+            maxC = values[value];
+          } else if (value === 'tide_range_lower') {
+            tide_range_lower = values[value];
+          } else if (value === 'tide_range_upper') {
+            tide_range_upper = values[value];
+          };
+
         });
+
+        // checks if Vegitation Threshold Lower > Vegitation Threshold Upper and raises an error on both fields
+        if (maxC > minC) {
+          setError('maxC', "Lower threshold cannot be larger than upper threshold.");
+          setError('minC', "Upper threshold cannot be smaller than lower threshold.");
+        };
+        // checks if Tidal range proximity lower > Tidal range proximity upper and raises an error on both fields
+        if (tide_range_lower > tide_range_upper) {
+          setError('tide_range_lower', "Lower bound cannot be larger than upper bound.");
+          setError('tide_range_upper', "Upper bound cannot be smaller than lower bound.");
+        };
+
         let formState = getState();
         if (!Object.keys(formState.errors).length) {
           setLoading(true);
