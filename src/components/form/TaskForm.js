@@ -39,6 +39,15 @@ const TaskForm = ({
       id: "task-form",
       defaultValues,
       validate: async (values) => {
+        // The 0 validation error: values.waterThresh is blank at this point
+        // FIX:
+        // gets the value of the 'Water Threshold' element (waterThresholdElementValue)
+        // if the value == 0, then set values.waterThresh = waterThresholdElementValue
+        let waterThresholdElementValue = document.getElementById('Water Threshold');
+        if (waterThresholdElementValue && waterThresholdElementValue.value == 0){
+          values.waterThresh = waterThresholdElementValue.value;
+        };
+
         const errors = await Validate(values, settings, task.name);
         console.log(`Errors are: `, errors);
         return errors;
