@@ -24,7 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 .vscode/settings.json
 
-deploy.yaml
-
-
 .vscode
