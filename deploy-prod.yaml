@@ -24,7 +24,7 @@ spec:
         io.kompose.service: cubepage
     spec:
       containers:
-        - image: commonsensingacrprod.azurecr.io/cubepage:20230328.1
+        - image: commonsensingacrprod.azurecr.io/cubepage:20230328.2
           imagePullPolicy: Always
           name: cubepage
           ports:
