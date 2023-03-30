@@ -254,6 +254,7 @@ const TaskForm = ({
             onClick={handleSubmit}
             className="task-submit"
             value="Submit"
+            disabled={errorMessage && errorMessage.length > 0}
           />
         </div>
       </form>
