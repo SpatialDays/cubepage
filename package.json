@@ -18,7 +18,7 @@
     "jszip": "^3.7.1",
     "leaflet": "^1.6.0",
     "leaflet-draw": "^1.0.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^9.0.0",
     "react-app-rewire-babel-loader": "^0.1.1",
     "react-app-rewired": "^2.1.8",
     "react-cool-form": "^0.4.1",
