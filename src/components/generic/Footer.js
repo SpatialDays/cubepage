@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="wrapper">
           <ul>
             <li className=" level-0 ">
-              <span>© Common Sensing Ltd. {year}</span>
+              <span>© CommonSensing {year}</span>
             </li>
             <li className=" level-0 ">
               <a target="_blank" rel="noreferrer" href="/privacy-policy">Privacy Policy</a>
