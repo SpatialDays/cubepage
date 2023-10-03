@@ -24,7 +24,7 @@ spec:
         io.kompose.service: cubepage
     spec:
       containers:
-        - image: commonsensingacrprod.azurecr.io/cubepage:20230328.2
+        - image: commonsensingacrprod.azurecr.io/cubepage:circle
           imagePullPolicy: Always
           name: cubepage
           ports:
@@ -55,13 +55,12 @@ metadata:
   name: cubepage
   namespace: cubepage
   annotations:
-    kubernetes.io/ingress.class: azure/application-gateway
-    appgw.ingress.kubernetes.io/health-probe-hostname: "prod.cubepage.csopenportal.co.uk"
+    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
     cert-manager.io/acme-challenge-type: dns01
 spec:
   rules:
-  - host: prod.cubepage.csopenportal.co.uk
+  - host: cubepage.csopenportal.co.uk
     http:
       paths:
       - backend:
@@ -73,5 +72,5 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - prod.cubepage.csopenportal.co.uk
-    secretName: ssl-prod-cubepage-csopenportal-co-uk-tls
+    - cubepage.csopenportal.co.uk
+    secretName: ssl-cubepage-csopenportal-co-uk-tls
