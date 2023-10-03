@@ -33,13 +33,13 @@ const Tasks = ({ tasks, setTasks, setSettings }) => {
 
       <div className="content__warning">
         <p>
-          Due to Landsat data specification changes made by USGS for Collection
-          2 and improvements to Sentinel-2's data specification, we are
+          Due to Landsat data specification changes made by USGS relating to Collection
+          2 and ESA's improvements to Sentinel-2's atmospheric correction algorithm, we are
           currently reviewing all of these Cube products to ensure they work
-          appropriately. <br />
+          as they should. <br />
           <br />
           <strong>As such, the tasks have been temporarily disabled</strong>. We will enable each
-          task as the products pass our internal validation.
+          task as they pass our internal validation.
         </p>
       </div>
 
