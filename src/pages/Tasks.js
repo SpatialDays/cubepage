@@ -33,13 +33,14 @@ const Tasks = ({ tasks, setTasks, setSettings }) => {
 
       <div className="content__warning">
         <p>
-          Due to Landsat data specification changes made by USGS relating to Collection
-          2 and ESA's improvements to Sentinel-2's atmospheric correction algorithm, we are
-          currently reviewing all of these Cube products to ensure they work
-          as they should. <br />
+          Due to USGS data specification changes relating to Landsat Collection
+          2 and ESA's improvements to Sentinel-2's atmospheric correction
+          algorithm, we are currently rerunning our ARD data pipelines to
+          replace all of CommonSensing’s Landsat 4, 5, 7, 8 and Sentinel-2 data.
           <br />
-          <strong>As such, the tasks have been temporarily disabled</strong>. We will enable each
-          task as they pass our internal validation.
+          We will then retest all the On-Demand tasks below and make them
+          available again one-by-one when they pass our validation checks. Thank
+          you for your patience in this regard.
         </p>
       </div>
 

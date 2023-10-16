@@ -9,13 +9,25 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-
-  cursor: pointer;
+  cursor: not-allowed;
   width: 300px;
   margin: 2em;
   border-radius: 8px;
   box-shadow: 0px 0px 8px #ccc;
   color: #253b56;
+  position: relative; /* Needed for the ::after positioning */
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 8px; 
+    pointer-events: none;
+  }
 
   &__content {
     padding: 4px 16px 20px 16px;
@@ -80,10 +92,10 @@
     overflow: hidden;
     transition: height 0.25s ease-out;
 
-    &:hover {
-      transition: height 0.25s ease-in;
-      height: 200px;
-    }
+    // &:hover {
+    //   transition: height 0.25s ease-in;
+    //   height: 200px;
+    // }
 
     &-container {
       width: 100%;

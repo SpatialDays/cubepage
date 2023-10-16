@@ -9,7 +9,7 @@ const Card = ({ task, onClick }) => {
         className="card"
         id={task.name}
         onClick={() => {
-          onClick(task);
+          // onClick(task);
         }}
       >
         <div>
